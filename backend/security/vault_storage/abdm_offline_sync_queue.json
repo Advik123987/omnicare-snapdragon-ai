@@ -1,0 +1,714 @@
+[
+  {
+    "queue_item_id": "SYNC-ITEM-B242622B",
+    "patient_id": "P-10024",
+    "abha_id": "aarav.mehra@abdm",
+    "record_id": "REC-P-10024",
+    "created_at": "2026-09-10T18:54:19Z",
+    "sync_status": "SYNCED_TO_ABHA_LOCKER",
+    "fhir_bundle": {
+      "resourceType": "Bundle",
+      "id": "63141dd4-53fa-4496-a970-fdfd2974961e",
+      "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-09-11T00:24:19+05:30",
+        "profile": [
+          "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentBundle"
+        ]
+      },
+      "identifier": {
+        "system": "https://abdm.gov.in/facilities/snapdragon-omnicare-edge",
+        "value": "OMNICARE-63141dd4"
+      },
+      "type": "document",
+      "timestamp": "2026-09-11T00:24:19+05:30",
+      "entry": [
+        {
+          "fullUrl": "urn:uuid:409d3365-0e42-4981-8faa-5b34c01fd5b0",
+          "resource": {
+            "resourceType": "Patient",
+            "id": "409d3365-0e42-4981-8faa-5b34c01fd5b0",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Patient"
+              ]
+            },
+            "identifier": [
+              {
+                "type": {
+                  "coding": [
+                    {
+                      "system": "https://nrces.in/ndhm/fhir/r4/CodeSystem/ndhm-identifier-type-code",
+                      "code": "ABHA",
+                      "display": "Ayushman Bharat Health Account Number"
+                    }
+                  ]
+                },
+                "system": "https://healthid.abdm.gov.in",
+                "value": "aarav.mehra@abdm"
+              }
+            ],
+            "name": [
+              {
+                "text": "Aarav Mehra"
+              }
+            ],
+            "gender": "male",
+            "birthDate": "1984-01-01"
+          }
+        },
+        {
+          "fullUrl": "urn:uuid:d63db8c6-e453-4942-ac1d-d09b66988a42",
+          "resource": {
+            "resourceType": "DiagnosticReport",
+            "id": "d63db8c6-e453-4942-ac1d-d09b66988a42",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DiagnosticReportRecord"
+              ]
+            },
+            "status": "final",
+            "category": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                    "code": "RAD",
+                    "display": "Radiology / Point-of-Care Imaging"
+                  }
+                ]
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "72170-4",
+                  "display": "Photographic image of skin lesion"
+                },
+                {
+                  "system": "http://hl7.org/fhir/sid/icd-10",
+                  "code": "C43.9",
+                  "display": "Malignant melanoma of skin, unspecified"
+                }
+              ],
+              "text": "Point-of-Care Edge Screening: Melanoma"
+            },
+            "subject": {
+              "reference": "urn:uuid:409d3365-0e42-4981-8faa-5b34c01fd5b0",
+              "display": "Aarav Mehra"
+            },
+            "effectiveDateTime": "2026-09-11T00:24:19+05:30",
+            "issued": "2026-09-11T00:24:19+05:30",
+            "performer": [
+              {
+                "display": "Snapdragon OmniCare AI Clinical Edge Station (HP OmniBook X)"
+              }
+            ],
+            "result": [
+              {
+                "reference": "urn:uuid:2d5375b3-47c1-4d75-94c3-2eaf22f77fd2"
+              },
+              {
+                "reference": "urn:uuid:1e0cebe1-d5e3-424e-a12c-62f16849ea26"
+              }
+            ],
+            "conclusion": "Melanoma. ICD-10: C43.9. Triage: CRITICAL.",
+            "conclusionCode": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/sid/icd-10",
+                    "code": "C43.9",
+                    "display": "Malignant melanoma of skin, unspecified"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "fullUrl": "urn:uuid:2d5375b3-47c1-4d75-94c3-2eaf22f77fd2",
+          "resource": {
+            "resourceType": "Observation",
+            "id": "2d5375b3-47c1-4d75-94c3-2eaf22f77fd2",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+              ]
+            },
+            "status": "final",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "89053-3",
+                  "display": "Dermatology Total Dermatoscopy Score (TDS)"
+                }
+              ],
+              "text": "Total Dermatoscopy Score (ABCD Rule)"
+            },
+            "subject": {
+              "reference": "urn:uuid:409d3365-0e42-4981-8faa-5b34c01fd5b0"
+            },
+            "valueQuantity": {
+              "value": 2.9,
+              "unit": "TDS Score",
+              "system": "http://unitsofmeasure.org"
+            },
+            "interpretation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                    "code": "H",
+                    "display": "Abnormal / High Risk"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "retry_count": 0,
+    "idempotency_key": "7b212cd5-5deb-4f92-b5d9-1c4389ccead2",
+    "abdm_transaction_id": "847c03e3-dea6-4c30-b6d4-0d39ede573ca",
+    "synced_at": "2026-09-10T18:54:19Z",
+    "gateway_response": "202_ACCEPTED_ENCRYPTED_DELIVERY"
+  },
+  {
+    "queue_item_id": "SYNC-ITEM-C34D9FA9",
+    "patient_id": "P-10024",
+    "abha_id": "aarav.mehra@abdm",
+    "record_id": "REC-P-10024",
+    "created_at": "2026-09-10T19:09:44Z",
+    "sync_status": "SYNCED_TO_ABHA_LOCKER",
+    "fhir_bundle": {
+      "resourceType": "Bundle",
+      "id": "95f90631-6781-4384-8e5f-f697ad21841b",
+      "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-09-11T00:39:44+05:30",
+        "profile": [
+          "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentBundle"
+        ]
+      },
+      "identifier": {
+        "system": "https://abdm.gov.in/facilities/snapdragon-omnicare-edge",
+        "value": "OMNICARE-95f90631"
+      },
+      "type": "document",
+      "timestamp": "2026-09-11T00:39:44+05:30",
+      "entry": [
+        {
+          "fullUrl": "urn:uuid:13474e01-208a-4ed2-9512-bb7a0941ba5b",
+          "resource": {
+            "resourceType": "Patient",
+            "id": "13474e01-208a-4ed2-9512-bb7a0941ba5b",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Patient"
+              ]
+            },
+            "identifier": [
+              {
+                "type": {
+                  "coding": [
+                    {
+                      "system": "https://nrces.in/ndhm/fhir/r4/CodeSystem/ndhm-identifier-type-code",
+                      "code": "ABHA",
+                      "display": "Ayushman Bharat Health Account Number"
+                    }
+                  ]
+                },
+                "system": "https://healthid.abdm.gov.in",
+                "value": "aarav.mehra@abdm"
+              }
+            ],
+            "name": [
+              {
+                "text": "Aarav Mehra"
+              }
+            ],
+            "gender": "male",
+            "birthDate": "1984-01-01"
+          }
+        },
+        {
+          "fullUrl": "urn:uuid:cefe0cc2-f579-4806-974d-28819da97d63",
+          "resource": {
+            "resourceType": "DiagnosticReport",
+            "id": "cefe0cc2-f579-4806-974d-28819da97d63",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DiagnosticReportRecord"
+              ]
+            },
+            "status": "final",
+            "category": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                    "code": "RAD",
+                    "display": "Radiology / Point-of-Care Imaging"
+                  }
+                ]
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "72170-4",
+                  "display": "Photographic image of skin lesion"
+                },
+                {
+                  "system": "http://hl7.org/fhir/sid/icd-10",
+                  "code": "C43.9",
+                  "display": "Malignant melanoma of skin, unspecified"
+                }
+              ],
+              "text": "Point-of-Care Edge Screening: Melanoma"
+            },
+            "subject": {
+              "reference": "urn:uuid:13474e01-208a-4ed2-9512-bb7a0941ba5b",
+              "display": "Aarav Mehra"
+            },
+            "effectiveDateTime": "2026-09-11T00:39:44+05:30",
+            "issued": "2026-09-11T00:39:44+05:30",
+            "performer": [
+              {
+                "display": "Snapdragon OmniCare AI Clinical Edge Station (HP OmniBook X)"
+              }
+            ],
+            "result": [
+              {
+                "reference": "urn:uuid:b8fb4a96-02d5-4a0c-b1f9-32c6e7d638d4"
+              },
+              {
+                "reference": "urn:uuid:e01e07fb-68d0-47ad-85c1-6fd8db6b51b3"
+              }
+            ],
+            "conclusion": "Melanoma. ICD-10: C43.9. Triage: CRITICAL.",
+            "conclusionCode": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/sid/icd-10",
+                    "code": "C43.9",
+                    "display": "Malignant melanoma of skin, unspecified"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "fullUrl": "urn:uuid:b8fb4a96-02d5-4a0c-b1f9-32c6e7d638d4",
+          "resource": {
+            "resourceType": "Observation",
+            "id": "b8fb4a96-02d5-4a0c-b1f9-32c6e7d638d4",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+              ]
+            },
+            "status": "final",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "89053-3",
+                  "display": "Dermatology Total Dermatoscopy Score (TDS)"
+                }
+              ],
+              "text": "Total Dermatoscopy Score (ABCD Rule)"
+            },
+            "subject": {
+              "reference": "urn:uuid:13474e01-208a-4ed2-9512-bb7a0941ba5b"
+            },
+            "valueQuantity": {
+              "value": 2.9,
+              "unit": "TDS Score",
+              "system": "http://unitsofmeasure.org"
+            },
+            "interpretation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                    "code": "H",
+                    "display": "Abnormal / High Risk"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "retry_count": 0,
+    "idempotency_key": "996c2e60-f1a8-4703-84fe-016b3352c99b",
+    "abdm_transaction_id": "1f5b5276-82e7-4cde-8ae9-416d0f1266bf",
+    "synced_at": "2026-09-10T19:09:44Z",
+    "gateway_response": "202_ACCEPTED_ENCRYPTED_DELIVERY"
+  },
+  {
+    "queue_item_id": "SYNC-ITEM-C3E33550",
+    "patient_id": "P-10024",
+    "abha_id": "aarav.mehra@abdm",
+    "record_id": "REC-P-10024",
+    "created_at": "2026-09-10T19:11:04Z",
+    "sync_status": "SYNCED_TO_ABHA_LOCKER",
+    "fhir_bundle": {
+      "resourceType": "Bundle",
+      "id": "ae64dfce-f142-45ef-901c-212b0b0b9b46",
+      "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-09-11T00:41:04+05:30",
+        "profile": [
+          "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentBundle"
+        ]
+      },
+      "identifier": {
+        "system": "https://abdm.gov.in/facilities/snapdragon-omnicare-edge",
+        "value": "OMNICARE-ae64dfce"
+      },
+      "type": "document",
+      "timestamp": "2026-09-11T00:41:04+05:30",
+      "entry": [
+        {
+          "fullUrl": "urn:uuid:1bd93c78-9a7d-43f8-a23d-b9eb0736e04b",
+          "resource": {
+            "resourceType": "Patient",
+            "id": "1bd93c78-9a7d-43f8-a23d-b9eb0736e04b",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Patient"
+              ]
+            },
+            "identifier": [
+              {
+                "type": {
+                  "coding": [
+                    {
+                      "system": "https://nrces.in/ndhm/fhir/r4/CodeSystem/ndhm-identifier-type-code",
+                      "code": "ABHA",
+                      "display": "Ayushman Bharat Health Account Number"
+                    }
+                  ]
+                },
+                "system": "https://healthid.abdm.gov.in",
+                "value": "aarav.mehra@abdm"
+              }
+            ],
+            "name": [
+              {
+                "text": "Aarav Mehra"
+              }
+            ],
+            "gender": "male",
+            "birthDate": "1984-01-01"
+          }
+        },
+        {
+          "fullUrl": "urn:uuid:df037f7c-a35a-47a4-bce8-0c63b036d34c",
+          "resource": {
+            "resourceType": "DiagnosticReport",
+            "id": "df037f7c-a35a-47a4-bce8-0c63b036d34c",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DiagnosticReportRecord"
+              ]
+            },
+            "status": "final",
+            "category": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                    "code": "RAD",
+                    "display": "Radiology / Point-of-Care Imaging"
+                  }
+                ]
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "72170-4",
+                  "display": "Photographic image of skin lesion"
+                },
+                {
+                  "system": "http://hl7.org/fhir/sid/icd-10",
+                  "code": "C43.9",
+                  "display": "Malignant melanoma of skin, unspecified"
+                }
+              ],
+              "text": "Point-of-Care Edge Screening: Melanoma"
+            },
+            "subject": {
+              "reference": "urn:uuid:1bd93c78-9a7d-43f8-a23d-b9eb0736e04b",
+              "display": "Aarav Mehra"
+            },
+            "effectiveDateTime": "2026-09-11T00:41:04+05:30",
+            "issued": "2026-09-11T00:41:04+05:30",
+            "performer": [
+              {
+                "display": "Snapdragon OmniCare AI Clinical Edge Station (HP OmniBook X)"
+              }
+            ],
+            "result": [
+              {
+                "reference": "urn:uuid:bc09c14f-a33d-4ca7-9d13-222957664516"
+              },
+              {
+                "reference": "urn:uuid:0d651ceb-4b03-4a9d-b009-3a90c32836c0"
+              }
+            ],
+            "conclusion": "Melanoma. ICD-10: C43.9. Triage: CRITICAL.",
+            "conclusionCode": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/sid/icd-10",
+                    "code": "C43.9",
+                    "display": "Malignant melanoma of skin, unspecified"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "fullUrl": "urn:uuid:bc09c14f-a33d-4ca7-9d13-222957664516",
+          "resource": {
+            "resourceType": "Observation",
+            "id": "bc09c14f-a33d-4ca7-9d13-222957664516",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+              ]
+            },
+            "status": "final",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "89053-3",
+                  "display": "Dermatology Total Dermatoscopy Score (TDS)"
+                }
+              ],
+              "text": "Total Dermatoscopy Score (ABCD Rule)"
+            },
+            "subject": {
+              "reference": "urn:uuid:1bd93c78-9a7d-43f8-a23d-b9eb0736e04b"
+            },
+            "valueQuantity": {
+              "value": 2.9,
+              "unit": "TDS Score",
+              "system": "http://unitsofmeasure.org"
+            },
+            "interpretation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                    "code": "H",
+                    "display": "Abnormal / High Risk"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "retry_count": 0,
+    "idempotency_key": "3ea9796d-1aad-463d-b4ea-72136c40b2c1",
+    "abdm_transaction_id": "39116a31-5aa2-448b-b157-a3e58ac6bd61",
+    "synced_at": "2026-09-10T19:11:04Z",
+    "gateway_response": "202_ACCEPTED_ENCRYPTED_DELIVERY"
+  },
+  {
+    "queue_item_id": "SYNC-ITEM-CC0255C0",
+    "patient_id": "P-10024",
+    "abha_id": "aarav.mehra@abdm",
+    "record_id": "REC-P-10024",
+    "created_at": "2026-09-10T19:18:44Z",
+    "sync_status": "SYNCED_TO_ABHA_LOCKER",
+    "fhir_bundle": {
+      "resourceType": "Bundle",
+      "id": "30e927e9-72b7-4493-8be5-887fb02e6f03",
+      "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-09-11T00:48:44+05:30",
+        "profile": [
+          "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentBundle"
+        ]
+      },
+      "identifier": {
+        "system": "https://abdm.gov.in/facilities/snapdragon-omnicare-edge",
+        "value": "OMNICARE-30e927e9"
+      },
+      "type": "document",
+      "timestamp": "2026-09-11T00:48:44+05:30",
+      "entry": [
+        {
+          "fullUrl": "urn:uuid:dedba1be-1c25-49f7-a5d8-8d7998157ed2",
+          "resource": {
+            "resourceType": "Patient",
+            "id": "dedba1be-1c25-49f7-a5d8-8d7998157ed2",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Patient"
+              ]
+            },
+            "identifier": [
+              {
+                "type": {
+                  "coding": [
+                    {
+                      "system": "https://nrces.in/ndhm/fhir/r4/CodeSystem/ndhm-identifier-type-code",
+                      "code": "ABHA",
+                      "display": "Ayushman Bharat Health Account Number"
+                    }
+                  ]
+                },
+                "system": "https://healthid.abdm.gov.in",
+                "value": "aarav.mehra@abdm"
+              }
+            ],
+            "name": [
+              {
+                "text": "Aarav Mehra"
+              }
+            ],
+            "gender": "male",
+            "birthDate": "1984-01-01"
+          }
+        },
+        {
+          "fullUrl": "urn:uuid:9f810341-0f27-4f2e-9f3e-d921d7ee075d",
+          "resource": {
+            "resourceType": "DiagnosticReport",
+            "id": "9f810341-0f27-4f2e-9f3e-d921d7ee075d",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DiagnosticReportRecord"
+              ]
+            },
+            "status": "final",
+            "category": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                    "code": "RAD",
+                    "display": "Radiology / Point-of-Care Imaging"
+                  }
+                ]
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "72170-4",
+                  "display": "Photographic image of skin lesion"
+                },
+                {
+                  "system": "http://hl7.org/fhir/sid/icd-10",
+                  "code": "C43.9",
+                  "display": "Malignant melanoma of skin, unspecified"
+                }
+              ],
+              "text": "Point-of-Care Edge Screening: Melanoma"
+            },
+            "subject": {
+              "reference": "urn:uuid:dedba1be-1c25-49f7-a5d8-8d7998157ed2",
+              "display": "Aarav Mehra"
+            },
+            "effectiveDateTime": "2026-09-11T00:48:44+05:30",
+            "issued": "2026-09-11T00:48:44+05:30",
+            "performer": [
+              {
+                "display": "Snapdragon OmniCare AI Clinical Edge Station (HP OmniBook X)"
+              }
+            ],
+            "result": [
+              {
+                "reference": "urn:uuid:6175cdd6-3fb0-4086-bead-682113edbc07"
+              },
+              {
+                "reference": "urn:uuid:9507231d-f1a4-4739-b9b8-8aa460b278c5"
+              }
+            ],
+            "conclusion": "Melanoma. ICD-10: C43.9. Triage: CRITICAL.",
+            "conclusionCode": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/sid/icd-10",
+                    "code": "C43.9",
+                    "display": "Malignant melanoma of skin, unspecified"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "fullUrl": "urn:uuid:6175cdd6-3fb0-4086-bead-682113edbc07",
+          "resource": {
+            "resourceType": "Observation",
+            "id": "6175cdd6-3fb0-4086-bead-682113edbc07",
+            "meta": {
+              "profile": [
+                "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+              ]
+            },
+            "status": "final",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "89053-3",
+                  "display": "Dermatology Total Dermatoscopy Score (TDS)"
+                }
+              ],
+              "text": "Total Dermatoscopy Score (ABCD Rule)"
+            },
+            "subject": {
+              "reference": "urn:uuid:dedba1be-1c25-49f7-a5d8-8d7998157ed2"
+            },
+            "valueQuantity": {
+              "value": 2.9,
+              "unit": "TDS Score",
+              "system": "http://unitsofmeasure.org"
+            },
+            "interpretation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                    "code": "H",
+                    "display": "Abnormal / High Risk"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "retry_count": 0,
+    "idempotency_key": "769465ba-6608-43f4-af2f-cbbe01dcbfeb",
+    "abdm_transaction_id": "1e249596-3be1-40c3-959c-9e340128150c",
+    "synced_at": "2026-09-10T19:18:44Z",
+    "gateway_response": "202_ACCEPTED_ENCRYPTED_DELIVERY"
+  }
+]

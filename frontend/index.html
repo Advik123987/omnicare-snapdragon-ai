@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniCare AI | Snapdragon® HP PC Clinical Edge Station</title>
+  <link rel="stylesheet" href="/css/cockpit.css">
+  <link rel="stylesheet" href="css/cockpit.css">
+  <style>
+/* OmniCare AI - Ultra-Professional Clinical Cockpit CSS
+   Theme: Qualcomm Snapdragon Red/Cyan & HP Enterprise Blue Glassmorphism */
+
+:root {
+  --bg-dark: #070B14;
+  --bg-card: rgba(13, 21, 38, 0.88);
+  --bg-card-hover: rgba(18, 30, 54, 0.98);
+  --border-glow: rgba(0, 217, 255, 0.25);
+  --border-cyan: #00D9FF;
+  --snapdragon-red: #E60012;
+  --hp-blue: #0096D6;
+  --accent-cyan: #00F0FF;
+  --accent-green: #10B981;
+  --accent-amber: #F59E0B;
+  --accent-red: #EF4444;
+  --accent-purple: #A855F7;
+  --text-main: #F1F5F9;
+  --text-muted: #94A3B8;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 150, 214, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(230, 0, 18, 0.08) 0%, transparent 40%),
+    linear-gradient(to bottom, #070B14, #0A0F1D);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glow);
+  border-radius: 14px;
+  padding: 1.35rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 217, 255, 0.45);
+  box-shadow: 0 12px 40px 0 rgba(0, 217, 255, 0.14);
+}
+
+/* Top Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 2rem;
+  background: rgba(7, 11, 20, 0.95);
+  border-bottom: 1px solid var(--border-glow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #00D9FF 0%, #0096D6 50%, #E60012 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.badge-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.22rem 0.6rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-snapdragon {
+  background: rgba(230, 0, 18, 0.15);
+  color: #FF4D5E;
+  border: 1px solid rgba(230, 0, 18, 0.4);
+}
+
+.badge-hp {
+  background: rgba(0, 150, 214, 0.15);
+  color: #38BDF8;
+  border: 1px solid rgba(0, 150, 214, 0.4);
+}
+
+.badge-npu {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.nav-telemetry {
+  display: flex;
+  gap: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.telemetry-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+}
+
+.telemetry-item span.val {
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+/* Patient Header Bar */
+.patient-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  background: rgba(13, 21, 38, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+}
+
+.patient-info {
+  display: flex;
+  gap: 2rem;
+}
+
+.patient-info b {
+  color: var(--text-main);
+}
+
+/* Tab Navigation Bar */
+.tab-nav {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem 0;
+  background: rgba(7, 11, 20, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+}
+
+.tab-btn.active {
+  color: var(--accent-cyan);
+  border-bottom: 2px solid var(--accent-cyan);
+  background: rgba(0, 217, 255, 0.06);
+}
+
+/* Main Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+}
+
+/* Modality Card Headers */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-latency {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-cyan);
+  background: rgba(0, 217, 255, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 217, 255, 0.25);
+}
+
+/* Vision Viewport Styling */
+.vision-viewport {
+  position: relative;
+  width: 100%;
+  height: 290px;
+  background: #020408;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.viewport-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.scan-overlay-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00D9FF, transparent);
+  box-shadow: 0 0 12px #00D9FF;
+  animation: scanSweep 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scanSweep {
+  0% { top: 0; opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Grad-CAM Controls */
+.gradcam-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  background: rgba(0,0,0,0.3);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+}
+
+.gradcam-bar input[type=range] {
+  accent-color: var(--accent-cyan);
+  width: 120px;
+}
+
+/* ABCD Metrics Grid */
+.abcd-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.abcd-box {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.6rem 0.4rem;
+  text-align: center;
+}
+
+.abcd-box .label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.abcd-box .value {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin: 0.2rem 0;
+}
+
+.abcd-box .sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+/* Diagnosis Banner */
+.diagnosis-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.14);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  margin-bottom: 1rem;
+}
+
+.diagnosis-banner.normal {
+  background: rgba(16, 185, 129, 0.14);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.diagnosis-banner.moderate {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.diag-title {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+.diag-icd {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Audio Spectrogram */
+.spectrogram-container {
+  height: 85px;
+  background: #020408;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  padding: 6px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spectrogram-bar {
+  flex: 1;
+  background: linear-gradient(to top, #0096D6, #00F0FF);
+  border-radius: 2px;
+  transition: height 0.08s ease;
+}
+
+/* SOAP Note Viewer */
+.soap-box {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  max-height: 240px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.soap-section {
+  margin-bottom: 0.65rem;
+}
+
+.soap-section b {
+  color: var(--accent-cyan);
+}
+
+/* Action Buttons */
+.btn-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background: linear-gradient(135deg, #0096D6 0%, #0077A8 100%);
+  color: white;
+  border: none;
+  padding: 0.65rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 150, 214, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #E60012 0%, #B3000E 100%);
+}
+
+.btn-danger:hover {
+  box-shadow: 0 4px 15px rgba(230, 0, 18, 0.4);
+}
+
+.btn-green {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+.btn-green:hover {
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+/* HP AI Companion Assistant Panel */
+.companion-panel {
+  grid-column: span 2;
+  margin-top: 0.5rem;
+}
+
+.companion-chat {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.companion-input {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--border-glow);
+  color: var(--text-main);
+  padding: 0.7rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  outline: none;
+}
+
+.companion-input:focus {
+  border-color: var(--border-cyan);
+}
+
+.companion-output {
+  margin-top: 0.75rem;
+  padding: 1rem;
+  background: rgba(0, 150, 214, 0.08);
+  border-left: 3px solid var(--hp-blue);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #0D1526;
+  border: 1px solid var(--border-cyan);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.json-pre {
+  background: #040711;
+  color: #38BDF8;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .companion-panel {
+    grid-column: span 1;
+  }
+}
+
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Global Navigation Bar -->
+  <header class="navbar">
+    <div class="brand-container">
+      <div class="brand-logo">OmniCare AI</div>
+      <span class="badge-tag badge-snapdragon">Snapdragon® X Elite</span>
+      <span class="badge-tag badge-hp">HP OmniBook X</span>
+      <span class="badge-tag badge-npu">45 TOPS Hexagon NPU</span>
+    </div>
+
+    <div class="nav-telemetry">
+      <div class="telemetry-item">
+        <span>NPU:</span>
+        <span class="val" id="nav-tops">45.0 TOPS</span>
+      </div>
+      <div class="telemetry-item">
+        <span>Latency:</span>
+        <span class="val" id="nav-latency">12.4 ms</span>
+      </div>
+      <div class="telemetry-item">
+        <span>Speed:</span>
+        <span class="val" id="nav-fps">80.6 FPS</span>
+      </div>
+      <div class="telemetry-item">
+        <span>Security:</span>
+        <button onclick="viewVaultAuditModal()" style="background:transparent; border:none; cursor:pointer; font-family:var(--font-mono); color:#10B981; font-weight:700;">
+          HP Wolf Vault [AES-256] ↗
+        </button>
+      </div>
+      <div class="telemetry-item">
+        <span>Battery:</span>
+        <span class="val" style="color:#38BDF8;">26h Off-Grid</span>
+      </div>
+      <div style="display:flex; gap:0.5rem; margin-left:0.5rem;">
+        <a href="/showcase/" class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.75rem; text-decoration:none;">🧪 Showcase</a>
+        <a href="/pitch-deck" class="btn" style="padding:0.25rem 0.6rem; font-size:0.75rem; text-decoration:none;">📊 Pitch Deck</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Patient Demographic Strip -->
+  <section class="patient-bar">
+    <div class="patient-info">
+      <div>PATIENT: <b>Aarav Mehra</b> (42y / Male)</div>
+      <div>ID: <b style="font-family:var(--font-mono)">P-10024</b></div>
+      <div>ABHA ID: <b style="color:var(--accent-cyan)">aarav.mehra@abdm</b></div>
+      <div>LOCATION: <b>Primary Health Camp #4 (Rural Off-Grid)</b></div>
+    </div>
+    <div style="display:flex; gap:1rem; align-items:center;">
+      <button class="btn btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.75rem;" onclick="viewAbdmFhirModal()">
+        Inspect ABDM FHIR JSON
+      </button>
+      <span style="color:var(--accent-green); font-size:0.8rem;">● 100% On-Device Privacy (Zero Cloud Leak)</span>
+    </div>
+  </section>
+
+  <!-- Main Clinical Dashboard Grid -->
+  <main class="dashboard-grid">
+
+    <!-- LEFT COLUMN: MULTIMODAL SENSORS & VISION -->
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+      <!-- MODALITY 1: DERMATOLOGY & OPHTHALMOLOGY VISION SCANNER -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🔬</span> Computer Vision Screening (YOLOv8-Seg / ResNet-50 INT8)
+          </div>
+          <div class="card-latency" id="vision-latency">12.4 ms | Hexagon NPU</div>
+        </div>
+
+        <div class="vision-viewport">
+          <canvas id="lesion-canvas" class="viewport-canvas"></canvas>
+          <div class="scan-overlay-line"></div>
+        </div>
+
+        <!-- Grad-CAM Saliency Blend Control -->
+        <div class="gradcam-bar">
+          <span><b>Grad-CAM NPU Attention Heatmap:</b></span>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span>Opacity:</span>
+            <input type="range" min="0" max="1" step="0.1" value="0.5" oninput="updateGradcamOpacity(this.value)">
+            <span id="gradcam-val" style="font-family:var(--font-mono); color:var(--accent-cyan);">50%</span>
+          </div>
+        </div>
+
+        <!-- Explainable ABCD Rule Metrics -->
+        <div class="abcd-grid">
+          <div class="abcd-box">
+            <div class="label">Asymmetry (A)</div>
+            <div class="value" id="val-asym">38.4%</div>
+            <div class="sub" id="sub-asym">Asymmetric (>35%)</div>
+          </div>
+          <div class="abcd-box">
+            <div class="label">Border (B)</div>
+            <div class="value" id="val-border">1.82</div>
+            <div class="sub" id="sub-border">Notched / Irregular</div>
+          </div>
+          <div class="abcd-box">
+            <div class="label">Color (C)</div>
+            <div class="value" id="val-color">3 Shades</div>
+            <div class="sub" id="sub-color">Brown, Tan, Red</div>
+          </div>
+          <div class="abcd-box">
+            <div class="label">Diameter (D)</div>
+            <div class="value" id="val-diam">7.2 mm</div>
+            <div class="sub" id="sub-diam">>6mm High Risk</div>
+          </div>
+        </div>
+
+        <!-- Primary Diagnosis Banner -->
+        <div class="diagnosis-banner" id="lesion-banner">
+          <div>
+            <div class="diag-title" id="diag-condition">Melanoma Suspect (96.4% Confidence)</div>
+            <div class="diag-icd" id="diag-icd">ICD-10: C43.9 • Total Dermatoscopy Score: 5.82</div>
+          </div>
+          <div style="text-align: right;">
+            <span class="badge-tag badge-snapdragon" style="font-size: 0.8rem;">CRITICAL URGENT</span>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn" onclick="runVisionScreening('Melanoma')">Scan Lesion (Melanoma)</button>
+          <button class="btn btn-secondary" onclick="runVisionScreening('Normal / Benign Nevus')">Benign Mole</button>
+          <button class="btn btn-secondary" onclick="runVisionScreening('Eczema / Dermatitis')">Eczema</button>
+          <button class="btn" style="background:linear-gradient(135deg, #A855F7, #7E22CE)" onclick="runRetinaScreening()">Screen Retinal Fundus</button>
+        </div>
+      </div>
+
+      <!-- MODALITY 2: HP POLY STUDIO PULMONARY STETHOSCOPY -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🫁</span> Pulmonary Acoustic Stethoscopy (HP Poly Studio / YAMNet INT8)
+          </div>
+          <div class="card-latency" id="audio-latency">6.8 ms | Hexagon NPU</div>
+        </div>
+
+        <div class="spectrogram-container" id="spectrogram-bars">
+          <!-- Populated by cockpit.js -->
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <div>
+            <b id="audio-condition" style="color:var(--accent-amber)">Fine / Coarse Crackles (Pneumonia Suspect) (95.2%)</b>
+            <div id="audio-finding" style="font-size: 0.78rem; color: var(--text-muted);">
+              Discontinuous, explosive adventitious sounds indicative of alveolar fluid / consolidation.
+            </div>
+          </div>
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-cyan);" id="audio-snr">
+            HP Poly Studio SNR: 28.5 dB
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn" onclick="runAudioScreening('Fine / Coarse Crackles (Pneumonia / Fibrosis)')">
+            🔊 Play & Screen Pneumonia Crackles
+          </button>
+          <button class="btn btn-secondary" onclick="runAudioScreening('High-Pitched Wheezing (Asthma / COPD)')">
+            🔊 Play & Screen Asthma Wheeze
+          </button>
+          <button class="btn btn-secondary" onclick="runAudioScreening('Normal Vesicular Breath Sound')">
+            🔊 Normal Breath Sound
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: CLINICAL SCRIBE, SOAP & ACTIONS -->
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+      <!-- MODALITY 3: CLINICAL VOICE DICTATION -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🎙️</span> HP Poly Studio Clinical Dictation (Whisper-Small)
+          </div>
+          <div class="card-latency">18.2 ms | Hexagon NPU</div>
+        </div>
+
+        <textarea id="dictation-text" class="companion-input" style="width:100%; height:75px; resize:none; margin-bottom:0.75rem;">45-year-old male presents with asymmetrical hyperpigmented lesion on the right forearm, irregular borders noted, expanding over past 3 months.</textarea>
+
+        <div class="btn-row">
+          <button class="btn" onclick="runVoiceDictation('en')">Dictate in English</button>
+          <button class="btn btn-secondary" onclick="runVoiceDictation('hi')">Dictate in Hindi (हिंदी)</button>
+        </div>
+      </div>
+
+      <!-- MODALITY 4: LLAMA-3.2 CLINICAL SCRIBE (SOAP NOTE) -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📋</span> Llama-3.2-3B Clinical SOAP Note & ICD-10 Scribe
+          </div>
+          <div class="card-latency" id="scribe-speed">34.2 tok/s | Hexagon NPU</div>
+        </div>
+
+        <div class="soap-box" id="soap-content">
+          <div class="soap-section"><b>[S] SUBJECTIVE:</b><br>Patient reports asymmetrical hyperpigmented lesion on right forearm, increasing in size over 3 months with mild pruritus.</div>
+          <div class="soap-section"><b>[O] OBJECTIVE:</b><br>• Dermatological Vision (YOLOv8-Seg INT8): Identified 'Melanoma' (96.4% confidence). TDS Score: 5.82.<br>• Pulmonary Stethoscopy (HP Poly Studio / YAMNet INT8): Bilateral normal vesicular sounds.</div>
+          <div class="soap-section"><b>[A] ASSESSMENT:</b><br>1. Primary Diagnosis: Malignant melanoma suspect (ICD-10: C43.9)<br>2. Risk Stratification: CRITICAL URGENT (Total Dermatoscopy Score > 5.45)</div>
+          <div class="soap-section"><b>[P] PLAN:</b><br>1. Immediate referral for full-thickness excisional biopsy.<br>2. Patient counseled via HP Poly Studio audio in Hindi.<br>3. Record encrypted in HP Wolf Security local vault.</div>
+        </div>
+
+        <!-- Multilingual Audio Counseling Player -->
+        <div style="background: rgba(0,0,0,0.3); padding:0.65rem; border-radius:6px; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:0.8rem; color:var(--text-muted)">
+            🔊 Offline Audio Counseling (HP Poly Studio):
+          </span>
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="playPatientCounselingAudio('en')">Listen English</button>
+            <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="playPatientCounselingAudio('hi')">सुनें हिंदी</button>
+            <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="playPatientCounselingAudio('ta')">கேட்க தமிழ்</button>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="btn-row">
+          <button class="btn btn-green" onclick="viewAbdmFhirModal()">
+            📥 1-Click ABDM / ABHA FHIR R4 Bundle
+          </button>
+          <button class="btn btn-danger" onclick="saveToWolfVault()">
+            🔒 Save to HP Wolf Encrypted Vault
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM SPAN: HP AI COMPANION NATURAL LANGUAGE ASSISTANT -->
+    <div class="glass-card companion-panel">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🤖</span> HP AI Companion — On-Device Clinical Assistant
+        </div>
+        <div class="badge-tag badge-hp">HP Wolf Protected</div>
+      </div>
+
+      <div class="companion-chat">
+        <input type="text" id="companion-input" class="companion-input" 
+               placeholder="Ask HP AI Companion (e.g. 'Summarize all critical alerts today' or 'Check NPU hardware telemetry')..." 
+               value="HP AI: Summarize all high-risk clinical alerts from today's camp">
+        <button class="btn" onclick="askHpCompanion()">Ask HP AI</button>
+      </div>
+
+      <div class="companion-output" id="companion-output" style="display:none;">
+        <!-- Filled dynamically by cockpit.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ABDM FHIR JSON MODAL -->
+  <div id="fhir-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="color:var(--accent-cyan); display:flex; align-items:center; gap:0.5rem;">
+          <span>🇮🇳</span> Official India ABDM / ABHA FHIR R4 DocumentBundle
+        </h3>
+        <button onclick="closeFhirModal()" style="background:transparent; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
+          Conforms to NRCeS (National Resource Centre for EHR Standards) India FHIR R4 DiagnosticReportRecord specifications.
+        </p>
+        <pre id="fhir-modal-body" class="json-pre"></pre>
+      </div>
+      <div style="padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end; gap:0.75rem;">
+        <button class="btn btn-secondary" onclick="copyFhirJson()">Copy JSON</button>
+        <button class="btn btn-green" onclick="downloadFhirJsonFile()">Download .json</button>
+        <button class="btn btn-secondary" onclick="closeFhirModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HP WOLF SECURITY VAULT MODAL -->
+  <div id="vault-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="color:#10B981; display:flex; align-items:center; gap:0.5rem;">
+          <span>🛡️</span> HP Wolf Security Local Vault Inspector (AES-256 GCM)
+        </h3>
+        <button onclick="closeVaultModal()" style="background:transparent; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
+          Hardware Root-of-Trust Encrypted Storage. Zero cloud transmissions. Tamper-evident SHA-256 hash chains.
+        </p>
+        <pre id="vault-modal-body" class="json-pre"></pre>
+      </div>
+      <div style="padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end;">
+        <button class="btn btn-secondary" onclick="closeVaultModal()">Close Inspector</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/audio_synth.js"></script>
+  <script src="/js/cockpit.js"></script>
+  <script src="js/audio_synth.js"></script>
+  <script src="js/cockpit.js"></script>
+</body>
+</html>

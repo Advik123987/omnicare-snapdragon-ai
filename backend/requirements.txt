@@ -1,0 +1,17 @@
+# OmniCare AI - Snapdragon HP PC Edge Dependencies
+# Optimized for Snapdragon X Elite / X Plus Hexagon NPU
+
+# Web & API Framework
+fastapi>=0.109.0
+uvicorn>=0.27.0
+pydantic>=2.6.0
+python-multipart>=0.0.9
+
+# Edge Inference & Hardware Runtimes
+# Priority: onnxruntime-qnn (Hexagon NPU) -> onnxruntime-directml (Adreno GPU) -> onnxruntime (CPU)
+onnxruntime>=1.17.0
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Image & Audio Processing
+pillow>=10.2.0

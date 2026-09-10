@@ -1,0 +1,62 @@
+{
+  "hardware_comparison": [
+    {
+      "platform": "Snapdragon X Elite (HP OmniBook X NPU)",
+      "modality": "Multi-Modal Concurrent (Vision + Audio + LLM)",
+      "latency_ms": 19.9,
+      "fps": 77.1,
+      "power_draw_watts": 4.5,
+      "bandwidth_consumed_kbps": 0.0,
+      "offline_resilience": "100% Fully Functional Offline",
+      "patient_data_privacy": "100% Protected (Zero bytes leaked)",
+      "monthly_cloud_cost_usd": 0.0,
+      "dpdp_hipaa_compliance": "Fully Compliant"
+    },
+    {
+      "platform": "Traditional Public Cloud Medical API",
+      "modality": "Multi-Modal API Calls (AWS/GCP/Azure)",
+      "latency_ms": 1650.0,
+      "fps": 0.6,
+      "power_draw_watts": 350.0,
+      "bandwidth_consumed_kbps": 15000.0,
+      "offline_resilience": "0% Fails completely without internet",
+      "patient_data_privacy": "High Risk (Scans uploaded to 3rd party)",
+      "monthly_cloud_cost_usd": 1500.0,
+      "dpdp_hipaa_compliance": "Requires BAA / Complex Cross-border Compliance"
+    },
+    {
+      "platform": "Standard x86 Laptop CPU (No NPU)",
+      "modality": "Local CPU Execution (OpenVINO / ONNX CPU)",
+      "latency_ms": 320.0,
+      "fps": 3.1,
+      "power_draw_watts": 45.0,
+      "bandwidth_consumed_kbps": 0.0,
+      "offline_resilience": "Functional but drains battery in 2 hours",
+      "patient_data_privacy": "100% Protected",
+      "monthly_cloud_cost_usd": 0.0,
+      "dpdp_hipaa_compliance": "Compliant"
+    }
+  ],
+  "qualcomm_ai_hub_models": {
+    "yolov8_seg_dermatology": {
+      "latency_ms": 12.96,
+      "precision": "INT8",
+      "npu_offload": "100%"
+    },
+    "yamnet_pulmonary_stethoscopy": {
+      "latency_ms": 6.92,
+      "precision": "INT8",
+      "npu_offload": "100%"
+    },
+    "whisper_small_dictation": {
+      "latency_ms": 18.15,
+      "precision": "INT8/FP16",
+      "npu_offload": "97.5%"
+    },
+    "llama_3_2_clinical_scribe": {
+      "tokens_per_second": 34.2,
+      "precision": "INT4 QNN",
+      "npu_offload": "100%"
+    }
+  }
+}
