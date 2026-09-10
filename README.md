@@ -5,10 +5,12 @@
 ![Hexagon NPU](https://img.shields.io/badge/Hexagon%20NPU-45.0%20TOPS-00F0FF?style=for-the-badge)
 ![DPDP Act 2023](https://img.shields.io/badge/Privacy-100%25%20On--Device%20(DPDP%2FHIPAA)-10B981?style=for-the-badge)
 ![ABDM FHIR R4](https://img.shields.io/badge/India%20ABDM-FHIR%20R4%20Standard-F59E0B?style=for-the-badge)
+[![GitHub](https://img.shields.io/badge/GitHub-Advik123987%2Fomnicare--snapdragon--ai-181717?style=for-the-badge&logo=github)](https://github.com/Advik123987/omnicare-snapdragon-ai)
 
 > **Qualcomm Snapdragon® AI Lab Build & Present Challenge 2026**  
 > **Target Hardware:** Snapdragon-Powered HP PCs (HP OmniBook X / HP EliteBook Ultra)  
 > **Participant:** Harsh Maurya (`themauryaharsh@gmail.com`)  
+> **GitHub Repository:** [https://github.com/Advik123987/omnicare-snapdragon-ai](https://github.com/Advik123987/omnicare-snapdragon-ai)  
 > **Interactive Judge Portal:** Open `showcase/index.html` in any browser!
 
 ---

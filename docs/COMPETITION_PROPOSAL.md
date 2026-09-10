@@ -4,6 +4,7 @@
 **Target Hardware:** Snapdragon-Powered HP PCs (HP OmniBook X / HP EliteBook Ultra with 45 TOPS Hexagon™ NPU)  
 **Track:** AI Use Case Development / Edge Healthcare & Smart Mobility  
 **Participant:** Harsh Maurya (`themauryaharsh@gmail.com`)  
+**GitHub Repository:** [https://github.com/Advik123987/omnicare-snapdragon-ai](https://github.com/Advik123987/omnicare-snapdragon-ai)  
 **Submission Round:** Solution Submission Round (Deadline: 30 September 2026)  
 
 ---
