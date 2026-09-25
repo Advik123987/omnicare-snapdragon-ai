@@ -1,20 +1,24 @@
 /* OmniCare AI - Ultra-Professional Clinical Cockpit CSS
-   Theme: Qualcomm Snapdragon Red/Cyan & HP Enterprise Blue Glassmorphism */
+   Theme: Qualcomm Snapdragon Royal Edition (Crimson, Champagne Gold, Deep Onyx & Quantum Cyan) */
 
 :root {
-  --bg-dark: #070B14;
-  --bg-card: rgba(13, 21, 38, 0.88);
-  --bg-card-hover: rgba(18, 30, 54, 0.98);
-  --border-glow: rgba(0, 217, 255, 0.25);
-  --border-cyan: #00D9FF;
-  --snapdragon-red: #E60012;
+  --bg-dark: #050811;
+  --bg-card: rgba(11, 17, 32, 0.92);
+  --bg-card-hover: rgba(16, 26, 48, 0.98);
+  --border-glow: rgba(229, 169, 60, 0.28);
+  --border-cyan: #00F0FF;
+  --snapdragon-red: #FF003B;
+  --snapdragon-crimson: #E60012;
+  --snapdragon-gold: #E5A93C;
+  --snapdragon-gold-glow: #F5C563;
   --hp-blue: #0096D6;
   --accent-cyan: #00F0FF;
+  --accent-gold: #F5C563;
   --accent-green: #10B981;
   --accent-amber: #F59E0B;
   --accent-red: #EF4444;
   --accent-purple: #A855F7;
-  --text-main: #F1F5F9;
+  --text-main: #F8FAFC;
   --text-muted: #94A3B8;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -32,28 +36,29 @@ body {
   font-family: var(--font-sans);
   min-height: 100vh;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(0, 150, 214, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(230, 0, 18, 0.08) 0%, transparent 40%),
-    linear-gradient(to bottom, #070B14, #0A0F1D);
+    radial-gradient(circle at 12% 16%, rgba(230, 0, 18, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 88% 18%, rgba(229, 169, 60, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 50% 88%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+    linear-gradient(to bottom, #050811, #080D1A);
   line-height: 1.5;
   overflow-x: hidden;
 }
 
-/* Glassmorphism Card Style */
+/* Glassmorphism Card Style - Snapdragon Royal Edition */
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--border-glow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 169, 60, 0.22);
   border-radius: 14px;
   padding: 1.35rem;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: all 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 217, 255, 0.45);
-  box-shadow: 0 12px 40px 0 rgba(0, 217, 255, 0.14);
+  border-color: rgba(229, 169, 60, 0.5);
+  box-shadow: 0 14px 45px 0 rgba(229, 169, 60, 0.22);
 }
 
 /* Top Navbar */
@@ -77,39 +82,49 @@ body {
 }
 
 .brand-logo {
-  font-size: 1.6rem;
+  font-size: 1.65rem;
   font-weight: 800;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #00D9FF 0%, #0096D6 50%, #E60012 100%);
+  background: linear-gradient(135deg, #FFF 0%, #F5C563 35%, #FF003B 70%, #00F0FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(229, 169, 60, 0.45));
 }
 
 .badge-tag {
   font-size: 0.72rem;
   font-weight: 700;
-  padding: 0.22rem 0.6rem;
+  padding: 0.24rem 0.65rem;
   border-radius: 4px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 .badge-snapdragon {
-  background: rgba(230, 0, 18, 0.15);
-  color: #FF4D5E;
-  border: 1px solid rgba(230, 0, 18, 0.4);
+  background: linear-gradient(135deg, rgba(230, 0, 18, 0.28), rgba(229, 169, 60, 0.18));
+  color: #FFA5B0;
+  border: 1px solid rgba(255, 75, 75, 0.55);
+  box-shadow: 0 0 12px rgba(230, 0, 18, 0.35);
 }
 
 .badge-hp {
-  background: rgba(0, 150, 214, 0.15);
+  background: rgba(0, 150, 214, 0.18);
   color: #38BDF8;
-  border: 1px solid rgba(0, 150, 214, 0.4);
+  border: 1px solid rgba(0, 150, 214, 0.45);
 }
 
 .badge-npu {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34D399;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  background: rgba(0, 240, 255, 0.15);
+  color: #00F0FF;
+  border: 1px solid rgba(0, 240, 255, 0.45);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+}
+
+.badge-royal {
+  background: linear-gradient(135deg, rgba(229, 169, 60, 0.25), rgba(245, 197, 99, 0.1));
+  color: #F5C563;
+  border: 1px solid rgba(245, 197, 99, 0.6);
+  box-shadow: 0 0 12px rgba(229, 169, 60, 0.4);
 }
 
 .nav-telemetry {
@@ -433,12 +448,29 @@ body {
   box-shadow: 0 4px 15px rgba(230, 0, 18, 0.4);
 }
 
+.btn-green:hover {
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
 .btn-green {
   background: linear-gradient(135deg, #10B981 0%, #059669 100%);
 }
 
 .btn-green:hover {
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-royal {
+  background: linear-gradient(135deg, #E60012 0%, #E5A93C 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  border: 1px solid rgba(245, 197, 99, 0.5);
+  box-shadow: 0 4px 18px rgba(230, 0, 18, 0.35);
+}
+
+.btn-royal:hover {
+  box-shadow: 0 6px 24px rgba(229, 169, 60, 0.55);
+  transform: translateY(-2px);
 }
 
 /* HP AI Companion Assistant Panel */

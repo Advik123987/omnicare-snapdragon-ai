@@ -85,13 +85,20 @@ class ClinicalScribeEngine:
             f"3. On-Device AI Diagnostic Certainty: High (>92% consensus across multi-modal NPU passes)."
         )
 
-        # 4. Plan (P)
+        # 4. Plan (P) - Evidence-Based Clinical Management Guidelines
         if "Melanoma" in primary_dx or "Carcinoma" in primary_dx:
             plan = (
                 "1. Immediate referral to Tertiary Oncology / Dermatology for full-thickness excisional biopsy.\n"
                 "2. Maintain strict photoprotection; avoid mechanical trauma or irritation to lesion.\n"
                 "3. Patient advised on danger signs (spontaneous bleeding, rapid darkening).\n"
                 "4. Encrypted local EHR record synced to ABHA / ABDM health locker."
+            )
+        elif "Retinopathy" in primary_dx or "Diabetic" in primary_dx:
+            plan = (
+                "1. Urgent referral to Vitreoretinal Specialist for optical coherence tomography (OCT) and fluorescein angiography.\n"
+                "2. Glycemic optimization targeting HbA1c < 7.0%; tight blood pressure control (<130/80 mmHg).\n"
+                "3. Evaluate eligibility for anti-VEGF intravitreal therapy or focal laser photocoagulation.\n"
+                "4. Schedule repeat dilated fundus examination within 3 months."
             )
         elif "Crackles" in primary_dx or "Pneumonia" in primary_dx:
             plan = (
@@ -100,11 +107,24 @@ class ClinicalScribeEngine:
                 "3. Monitor SpO2 daily; urgent ER evaluation if SpO2 drops below 92% or tachypnea worsens.\n"
                 "4. Review in outpatient clinic in 72 hours."
             )
+        elif "Wheezing" in primary_dx or "Asthma" in primary_dx or "COPD" in primary_dx:
+            plan = (
+                "1. Initiate short-acting beta-2 agonist (SABA, e.g. Inhaled Salbutamol 100-200 mcg) via spacer PRN.\n"
+                "2. Prescribe inhaled corticosteroid (ICS) maintenance therapy per GINA / GOLD clinical protocols.\n"
+                "3. Spirometry / peak expiratory flow (PEF) monitoring; educate on asthma action plan and trigger avoidance.\n"
+                "4. Clinical follow-up in 14 days or immediately if dyspnea persists at rest."
+            )
+        elif "Benign" in primary_dx or "Normal" in primary_dx:
+            plan = (
+                "1. Patient reassurance; no acute pathological intervention indicated.\n"
+                "2. Maintain routine preventive health habits and annual wellness screening.\n"
+                "3. Advised to report any new or evolving symptoms."
+            )
         else:
             plan = (
-                "1. Conservative management and patient reassurance.\n"
-                "2. Topical emollients / symptomatic therapy as indicated.\n"
-                "3. Scheduled routine follow-up in 3 months or sooner if symptoms change."
+                "1. Conservative symptomatic management with mild topical emollients.\n"
+                "2. Avoid irritants and harsh detergents; maintain skin barrier hydration.\n"
+                "3. Outpatient dermatology review if symptoms do not resolve within 14 days."
             )
 
         # 5. Multilingual Patient Audio Counseling Script (for HP Poly Studio speakers)

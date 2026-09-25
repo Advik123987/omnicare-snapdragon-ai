@@ -3,27 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OmniCare AI | Snapdragon® HP PC Clinical Edge Station</title>
-  <link rel="stylesheet" href="/css/cockpit.css">
+  <title>OmniCare AI | Snapdragon® Clinical Edge Workstation</title>
   <link rel="stylesheet" href="css/cockpit.css">
   <style>
 /* OmniCare AI - Ultra-Professional Clinical Cockpit CSS
-   Theme: Qualcomm Snapdragon Red/Cyan & HP Enterprise Blue Glassmorphism */
+   Theme: Qualcomm Snapdragon Royal Edition (Crimson, Champagne Gold, Deep Onyx & Quantum Cyan) */
 
 :root {
-  --bg-dark: #070B14;
-  --bg-card: rgba(13, 21, 38, 0.88);
-  --bg-card-hover: rgba(18, 30, 54, 0.98);
-  --border-glow: rgba(0, 217, 255, 0.25);
-  --border-cyan: #00D9FF;
-  --snapdragon-red: #E60012;
+  --bg-dark: #050811;
+  --bg-card: rgba(11, 17, 32, 0.92);
+  --bg-card-hover: rgba(16, 26, 48, 0.98);
+  --border-glow: rgba(229, 169, 60, 0.28);
+  --border-cyan: #00F0FF;
+  --snapdragon-red: #FF003B;
+  --snapdragon-crimson: #E60012;
+  --snapdragon-gold: #E5A93C;
+  --snapdragon-gold-glow: #F5C563;
   --hp-blue: #0096D6;
   --accent-cyan: #00F0FF;
+  --accent-gold: #F5C563;
   --accent-green: #10B981;
   --accent-amber: #F59E0B;
   --accent-red: #EF4444;
   --accent-purple: #A855F7;
-  --text-main: #F1F5F9;
+  --text-main: #F8FAFC;
   --text-muted: #94A3B8;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -41,28 +44,29 @@ body {
   font-family: var(--font-sans);
   min-height: 100vh;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(0, 150, 214, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(230, 0, 18, 0.08) 0%, transparent 40%),
-    linear-gradient(to bottom, #070B14, #0A0F1D);
+    radial-gradient(circle at 12% 16%, rgba(230, 0, 18, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 88% 18%, rgba(229, 169, 60, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 50% 88%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+    linear-gradient(to bottom, #050811, #080D1A);
   line-height: 1.5;
   overflow-x: hidden;
 }
 
-/* Glassmorphism Card Style */
+/* Glassmorphism Card Style - Snapdragon Royal Edition */
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--border-glow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 169, 60, 0.22);
   border-radius: 14px;
   padding: 1.35rem;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: all 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 217, 255, 0.45);
-  box-shadow: 0 12px 40px 0 rgba(0, 217, 255, 0.14);
+  border-color: rgba(229, 169, 60, 0.5);
+  box-shadow: 0 14px 45px 0 rgba(229, 169, 60, 0.22);
 }
 
 /* Top Navbar */
@@ -86,39 +90,49 @@ body {
 }
 
 .brand-logo {
-  font-size: 1.6rem;
+  font-size: 1.65rem;
   font-weight: 800;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #00D9FF 0%, #0096D6 50%, #E60012 100%);
+  background: linear-gradient(135deg, #FFF 0%, #F5C563 35%, #FF003B 70%, #00F0FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(229, 169, 60, 0.45));
 }
 
 .badge-tag {
   font-size: 0.72rem;
   font-weight: 700;
-  padding: 0.22rem 0.6rem;
+  padding: 0.24rem 0.65rem;
   border-radius: 4px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 .badge-snapdragon {
-  background: rgba(230, 0, 18, 0.15);
-  color: #FF4D5E;
-  border: 1px solid rgba(230, 0, 18, 0.4);
+  background: linear-gradient(135deg, rgba(230, 0, 18, 0.28), rgba(229, 169, 60, 0.18));
+  color: #FFA5B0;
+  border: 1px solid rgba(255, 75, 75, 0.55);
+  box-shadow: 0 0 12px rgba(230, 0, 18, 0.35);
 }
 
 .badge-hp {
-  background: rgba(0, 150, 214, 0.15);
+  background: rgba(0, 150, 214, 0.18);
   color: #38BDF8;
-  border: 1px solid rgba(0, 150, 214, 0.4);
+  border: 1px solid rgba(0, 150, 214, 0.45);
 }
 
 .badge-npu {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34D399;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  background: rgba(0, 240, 255, 0.15);
+  color: #00F0FF;
+  border: 1px solid rgba(0, 240, 255, 0.45);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+}
+
+.badge-royal {
+  background: linear-gradient(135deg, rgba(229, 169, 60, 0.25), rgba(245, 197, 99, 0.1));
+  color: #F5C563;
+  border: 1px solid rgba(245, 197, 99, 0.6);
+  box-shadow: 0 0 12px rgba(229, 169, 60, 0.4);
 }
 
 .nav-telemetry {
@@ -268,6 +282,21 @@ body {
   25% { opacity: 1; }
   75% { opacity: 1; }
   100% { top: 100%; opacity: 0; }
+}
+
+.pulse-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
 }
 
 /* Grad-CAM Controls */
@@ -442,12 +471,29 @@ body {
   box-shadow: 0 4px 15px rgba(230, 0, 18, 0.4);
 }
 
+.btn-green:hover {
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
 .btn-green {
   background: linear-gradient(135deg, #10B981 0%, #059669 100%);
 }
 
 .btn-green:hover {
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-royal {
+  background: linear-gradient(135deg, #E60012 0%, #E5A93C 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  border: 1px solid rgba(245, 197, 99, 0.5);
+  box-shadow: 0 4px 18px rgba(230, 0, 18, 0.35);
+}
+
+.btn-royal:hover {
+  box-shadow: 0 6px 24px rgba(229, 169, 60, 0.55);
+  transform: translateY(-2px);
 }
 
 /* HP AI Companion Assistant Panel */
@@ -561,7 +607,8 @@ body {
     </div>
 
     <div class="nav-telemetry">
-      <div class="telemetry-item">
+      <div class="telemetry-item" title="Hexagon v73 Vector eXtension Hardware Acceleration">
+        <span class="pulse-dot"></span>
         <span>NPU:</span>
         <span class="val" id="nav-tops">45.0 TOPS</span>
       </div>
@@ -570,13 +617,13 @@ body {
         <span class="val" id="nav-latency">12.4 ms</span>
       </div>
       <div class="telemetry-item">
-        <span>Speed:</span>
-        <span class="val" id="nav-fps">80.6 FPS</span>
+        <span>FPS:</span>
+        <span class="val" id="nav-fps">80.6</span>
       </div>
       <div class="telemetry-item">
         <span>Security:</span>
         <button onclick="viewVaultAuditModal()" style="background:transparent; border:none; cursor:pointer; font-family:var(--font-mono); color:#10B981; font-weight:700;">
-          HP Wolf Vault [AES-256] ↗
+          Wolf Vault [AES-256] ↗
         </button>
       </div>
       <div class="telemetry-item">
@@ -584,39 +631,50 @@ body {
         <span class="val" style="color:#38BDF8;">26h Off-Grid</span>
       </div>
       <div style="display:flex; gap:0.5rem; margin-left:0.5rem;">
-        <a href="/showcase/" class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.75rem; text-decoration:none;">🧪 Showcase</a>
-        <a href="/pitch-deck" class="btn" style="padding:0.25rem 0.6rem; font-size:0.75rem; text-decoration:none;">📊 Pitch Deck</a>
+        <a href="../showcase/index.html" class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.75rem; text-decoration:none;">🧪 Showcase</a>
+        <a href="../showcase/pitch-deck.html" class="btn" style="padding:0.25rem 0.6rem; font-size:0.75rem; text-decoration:none;">📊 Pitch Deck</a>
       </div>
     </div>
   </header>
 
-  <!-- Patient Demographic Strip -->
+  <!-- Patient Demographic Strip with Multi-Patient Clinical Presets -->
   <section class="patient-bar">
-    <div class="patient-info">
-      <div>PATIENT: <b>Aarav Mehra</b> (42y / Male)</div>
-      <div>ID: <b style="font-family:var(--font-mono)">P-10024</b></div>
-      <div>ABHA ID: <b style="color:var(--accent-cyan)">aarav.mehra@abdm</b></div>
-      <div>LOCATION: <b>Primary Health Camp #4 (Rural Off-Grid)</b></div>
+    <div style="display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span style="color:var(--accent-gold); font-size:0.8rem; font-weight:700;">PATIENT:</span>
+        <select id="patient-selector" onchange="selectPatientProfile(this.value)" 
+                style="background:rgba(0,0,0,0.6); color:#FFF; border:1px solid rgba(229,169,60,0.45); border-radius:6px; padding:0.25rem 0.6rem; font-size:0.82rem; font-weight:600; cursor:pointer;">
+          <option value="aarav">Aarav Mehra (42y / M) • Cutaneous Melanoma</option>
+          <option value="sunita">Sunita Devi (58y / F) • Diabetic Retinopathy</option>
+          <option value="rajesh">Rajesh Kumar (64y / M) • COPD Wheezing</option>
+        </select>
+      </div>
+      <div class="patient-info">
+        <div>ID: <b id="pat-id" style="font-family:var(--font-mono)">P-10024</b></div>
+        <div>ABHA ID: <b id="pat-abha" style="color:var(--accent-cyan)">aarav.mehra@abdm</b></div>
+        <div>LOCATION: <b id="pat-location">Primary Health Camp #4 (Off-Grid)</b></div>
+      </div>
     </div>
     <div style="display:flex; gap:1rem; align-items:center;">
       <button class="btn btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.75rem;" onclick="viewAbdmFhirModal()">
-        Inspect ABDM FHIR JSON
+        ABDM FHIR Bundle
       </button>
-      <span style="color:var(--accent-green); font-size:0.8rem;">● 100% On-Device Privacy (Zero Cloud Leak)</span>
+      <span style="color:var(--accent-green); font-size:0.8rem;">● 100% On-Device Privacy</span>
     </div>
   </section>
 
   <!-- Main Clinical Dashboard Grid -->
   <main class="dashboard-grid">
 
-    <!-- LEFT COLUMN: MULTIMODAL SENSORS & VISION -->
+    <!-- LEFT COLUMN: SENSORS & VISION -->
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
 
-      <!-- MODALITY 1: DERMATOLOGY & OPHTHALMOLOGY VISION SCANNER -->
+      <!-- MODALITY 1: DERMATOLOGY & RETINAL SCREENING -->
       <div class="glass-card">
         <div class="card-header">
           <div class="card-title">
-            <span>🔬</span> Computer Vision Screening (YOLOv8-Seg / ResNet-50 INT8)
+            <span>🔬</span> Vision Screening
+            <span class="badge-tag badge-npu" style="margin-left:0.4rem; font-size:0.68rem;">YOLOv8 INT8</span>
           </div>
           <div class="card-latency" id="vision-latency">12.4 ms | Hexagon NPU</div>
         </div>
@@ -628,7 +686,7 @@ body {
 
         <!-- Grad-CAM Saliency Blend Control -->
         <div class="gradcam-bar">
-          <span><b>Grad-CAM NPU Attention Heatmap:</b></span>
+          <span><b>Grad-CAM Heatmap:</b></span>
           <div style="display:flex; align-items:center; gap:0.5rem;">
             <span>Opacity:</span>
             <input type="range" min="0" max="1" step="0.1" value="0.5" oninput="updateGradcamOpacity(this.value)">
@@ -636,27 +694,43 @@ body {
           </div>
         </div>
 
-        <!-- Explainable ABCD Rule Metrics -->
+        <!-- Optical Quality & Skin Equity Telemetry (IQA Sharpness + Monk Scale Phototype + Epistemic Uncertainty) -->
+        <div class="equity-bar" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; background:rgba(0,0,0,0.35); padding:0.4rem 0.75rem; border-radius:6px; font-size:0.74rem; border:1px solid rgba(255,255,255,0.06); flex-wrap:wrap; gap:0.4rem;">
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <span style="color:var(--text-muted);">Optical IQA:</span>
+            <span id="vision-iqa-badge" style="color:var(--accent-green); font-weight:700;">Pass (98.4% Sharp, No Glare)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <span style="color:var(--text-muted);">Phototype:</span>
+            <span id="vision-monk-badge" style="color:var(--accent-gold); font-weight:700;">Monk Scale MST-5 Calibrated</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <span style="color:var(--text-muted);">Uncertainty:</span>
+            <span id="vision-uncertainty-badge" style="color:var(--accent-cyan); font-family:var(--font-mono); font-weight:600;">±1.6% (Trust Gated)</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Biomarkers Grid (ABCD Dermatology / Retinal Fundus) -->
         <div class="abcd-grid">
           <div class="abcd-box">
-            <div class="label">Asymmetry (A)</div>
+            <div class="label" id="lbl-metric-1">Asymmetry (A)</div>
             <div class="value" id="val-asym">38.4%</div>
             <div class="sub" id="sub-asym">Asymmetric (>35%)</div>
           </div>
           <div class="abcd-box">
-            <div class="label">Border (B)</div>
+            <div class="label" id="lbl-metric-2">Border (B)</div>
             <div class="value" id="val-border">1.82</div>
-            <div class="sub" id="sub-border">Notched / Irregular</div>
+            <div class="sub" id="sub-border">Irregular Border</div>
           </div>
           <div class="abcd-box">
-            <div class="label">Color (C)</div>
+            <div class="label" id="lbl-metric-3">Color (C)</div>
             <div class="value" id="val-color">3 Shades</div>
             <div class="sub" id="sub-color">Brown, Tan, Red</div>
           </div>
           <div class="abcd-box">
-            <div class="label">Diameter (D)</div>
+            <div class="label" id="lbl-metric-4">Diameter (D)</div>
             <div class="value" id="val-diam">7.2 mm</div>
-            <div class="sub" id="sub-diam">>6mm High Risk</div>
+            <div class="sub" id="sub-diam">High Risk (>6mm)</div>
           </div>
         </div>
 
@@ -667,25 +741,38 @@ body {
             <div class="diag-icd" id="diag-icd">ICD-10: C43.9 • Total Dermatoscopy Score: 5.82</div>
           </div>
           <div style="text-align: right;">
-            <span class="badge-tag badge-snapdragon" style="font-size: 0.8rem;">CRITICAL URGENT</span>
+            <span class="badge-tag badge-snapdragon" id="vision-badge" style="font-size: 0.8rem;">HIGH RISK</span>
           </div>
         </div>
 
         <div class="btn-row">
-          <button class="btn" onclick="runVisionScreening('Melanoma')">Scan Lesion (Melanoma)</button>
-          <button class="btn btn-secondary" onclick="runVisionScreening('Normal / Benign Nevus')">Benign Mole</button>
-          <button class="btn btn-secondary" onclick="runVisionScreening('Eczema / Dermatitis')">Eczema</button>
-          <button class="btn" style="background:linear-gradient(135deg, #A855F7, #7E22CE)" onclick="runRetinaScreening()">Screen Retinal Fundus</button>
+          <button class="btn" onclick="runVisionScreening('Melanoma')">Melanoma Sample</button>
+          <button class="btn btn-secondary" onclick="runVisionScreening('Normal / Benign Nevus')">Benign Nevus</button>
+          <button class="btn btn-secondary" onclick="runVisionScreening('Eczema / Dermatitis')">Dermatitis</button>
+          <button class="btn" style="background:linear-gradient(135deg, #A855F7, #7E22CE)" onclick="runRetinaScreening()">Retinal Fundus</button>
         </div>
       </div>
 
-      <!-- MODALITY 2: HP POLY STUDIO PULMONARY STETHOSCOPY -->
+      <!-- MODALITY 2: PULMONARY STETHOSCOPY -->
       <div class="glass-card">
         <div class="card-header">
           <div class="card-title">
-            <span>🫁</span> Pulmonary Acoustic Stethoscopy (HP Poly Studio / YAMNet INT8)
+            <span>🫁</span> Pulmonary Stethoscopy
+            <span class="badge-tag badge-npu" style="margin-left:0.4rem; font-size:0.68rem;">YAMNet INT8</span>
           </div>
           <div class="card-latency" id="audio-latency">6.8 ms | Hexagon NPU</div>
+        </div>
+
+        <!-- Acoustic Filter Mode (HP Poly Studio Studio-Grade Telemetry) -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem; background:rgba(0,0,0,0.35); padding:0.35rem 0.75rem; border-radius:6px;">
+          <div style="font-size:0.78rem; color:var(--text-muted); display:flex; align-items:center; gap:0.4rem;">
+            <span>Acoustic Filter:</span>
+            <span id="steth-mode-label" style="color:var(--accent-cyan); font-weight:600;">Diaphragm (100–1200 Hz)</span>
+          </div>
+          <div style="display:flex; gap:0.35rem;">
+            <button id="btn-mode-diaphragm" class="btn" style="padding:0.2rem 0.55rem; font-size:0.72rem;" onclick="setStethoscopeMode('diaphragm')">Diaphragm</button>
+            <button id="btn-mode-bell" class="btn btn-secondary" style="padding:0.2rem 0.55rem; font-size:0.72rem;" onclick="setStethoscopeMode('bell')">Bell Mode</button>
+          </div>
         </div>
 
         <div class="spectrogram-container" id="spectrogram-bars">
@@ -694,25 +781,41 @@ body {
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
           <div>
-            <b id="audio-condition" style="color:var(--accent-amber)">Fine / Coarse Crackles (Pneumonia Suspect) (95.2%)</b>
+            <b id="audio-condition" style="color:var(--accent-amber)">Crackles (Pneumonia Suspect) (95.2%)</b>
             <div id="audio-finding" style="font-size: 0.78rem; color: var(--text-muted);">
-              Discontinuous, explosive adventitious sounds indicative of alveolar fluid / consolidation.
+              Discontinuous adventitious sounds indicative of alveolar fluid.
             </div>
           </div>
           <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-cyan);" id="audio-snr">
-            HP Poly Studio SNR: 28.5 dB
+            SNR: 28.5 dB (Poly Studio)
+          </div>
+        </div>
+
+        <!-- Acoustic Integrity & Respiratory Phase Context (Artifact Suppression & Phase Gating) -->
+        <div class="acoustic-bar" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; background:rgba(0,0,0,0.35); padding:0.4rem 0.75rem; border-radius:6px; font-size:0.74rem; border:1px solid rgba(255,255,255,0.06); flex-wrap:wrap; gap:0.4rem;">
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <span style="color:var(--text-muted);">Friction / Motion:</span>
+            <span id="audio-artifact-badge" style="color:var(--accent-green); font-weight:700;">Suppressed (&lt;0.012 Index)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <span style="color:var(--text-muted);">Phase Context:</span>
+            <span id="audio-phase-badge" style="color:var(--accent-gold); font-weight:700;">Late Inspiratory (Alveolar)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <span style="color:var(--text-muted);">Poly Studio ANC:</span>
+            <span id="audio-anc-badge" style="color:var(--accent-cyan); font-family:var(--font-mono); font-weight:600;">-32.4 dB Active</span>
           </div>
         </div>
 
         <div class="btn-row">
           <button class="btn" onclick="runAudioScreening('Fine / Coarse Crackles (Pneumonia / Fibrosis)')">
-            🔊 Play & Screen Pneumonia Crackles
+            🔊 Crackles (Pneumonia)
           </button>
           <button class="btn btn-secondary" onclick="runAudioScreening('High-Pitched Wheezing (Asthma / COPD)')">
-            🔊 Play & Screen Asthma Wheeze
+            🔊 Wheeze (Asthma)
           </button>
           <button class="btn btn-secondary" onclick="runAudioScreening('Normal Vesicular Breath Sound')">
-            🔊 Normal Breath Sound
+            🔊 Normal Breath
           </button>
         </div>
       </div>
@@ -726,74 +829,117 @@ body {
       <div class="glass-card">
         <div class="card-header">
           <div class="card-title">
-            <span>🎙️</span> HP Poly Studio Clinical Dictation (Whisper-Small)
+            <span>🎙️</span> Clinical Voice Dictation
+            <span class="badge-tag badge-npu" style="margin-left:0.4rem; font-size:0.68rem;">Whisper INT8</span>
           </div>
           <div class="card-latency">18.2 ms | Hexagon NPU</div>
         </div>
 
-        <textarea id="dictation-text" class="companion-input" style="width:100%; height:75px; resize:none; margin-bottom:0.75rem;">45-year-old male presents with asymmetrical hyperpigmented lesion on the right forearm, irregular borders noted, expanding over past 3 months.</textarea>
+        <!-- Live Mic Dictation & Language Controls -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; background:rgba(0,0,0,0.3); padding:0.35rem 0.65rem; border-radius:6px;">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <button id="btn-live-mic" class="btn btn-danger" style="padding:0.25rem 0.65rem; font-size:0.75rem;" onclick="toggleLiveMicDictation()">
+              🎙️ Live Mic Dictate
+            </button>
+            <span id="mic-status" style="font-size:0.72rem; color:var(--text-muted);">Ready (Poly Studio)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.35rem; font-size:0.75rem; color:var(--text-muted);">
+            <span>Lang:</span>
+            <select id="mic-lang-select" 
+                    style="background:rgba(0,0,0,0.6); color:#FFF; border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:0.15rem 0.4rem; font-size:0.75rem; cursor:pointer;">
+              <option value="en">English (en-IN)</option>
+              <option value="hi">Hindi (हिंदी)</option>
+              <option value="ta">Tamil (தமிழ்)</option>
+            </select>
+          </div>
+        </div>
+
+        <textarea id="dictation-text" class="companion-input" style="width:100%; height:75px; resize:none; margin-bottom:0.75rem;">45-year-old male presents with asymmetrical hyperpigmented lesion on right forearm, expanding over past 3 months.</textarea>
 
         <div class="btn-row">
-          <button class="btn" onclick="runVoiceDictation('en')">Dictate in English</button>
-          <button class="btn btn-secondary" onclick="runVoiceDictation('hi')">Dictate in Hindi (हिंदी)</button>
+          <button class="btn" onclick="runVoiceDictation('en')">⚡ English Sample</button>
+          <button class="btn btn-secondary" onclick="runVoiceDictation('hi')">⚡ Hindi (हिंदी)</button>
+          <button class="btn btn-secondary" onclick="runVoiceDictation('ta')">⚡ Tamil (தமிழ்)</button>
         </div>
       </div>
 
-      <!-- MODALITY 4: LLAMA-3.2 CLINICAL SCRIBE (SOAP NOTE) -->
+      <!-- MODALITY 4: CLINICAL SOAP SCRIBE -->
       <div class="glass-card">
         <div class="card-header">
           <div class="card-title">
-            <span>📋</span> Llama-3.2-3B Clinical SOAP Note & ICD-10 Scribe
+            <span>📋</span> Clinical SOAP Scribe
+            <span class="badge-tag badge-npu" style="margin-left:0.4rem; font-size:0.68rem;">Llama-3.2 INT4</span>
           </div>
           <div class="card-latency" id="scribe-speed">34.2 tok/s | Hexagon NPU</div>
         </div>
 
         <div class="soap-box" id="soap-content">
           <div class="soap-section"><b>[S] SUBJECTIVE:</b><br>Patient reports asymmetrical hyperpigmented lesion on right forearm, increasing in size over 3 months with mild pruritus.</div>
-          <div class="soap-section"><b>[O] OBJECTIVE:</b><br>• Dermatological Vision (YOLOv8-Seg INT8): Identified 'Melanoma' (96.4% confidence). TDS Score: 5.82.<br>• Pulmonary Stethoscopy (HP Poly Studio / YAMNet INT8): Bilateral normal vesicular sounds.</div>
-          <div class="soap-section"><b>[A] ASSESSMENT:</b><br>1. Primary Diagnosis: Malignant melanoma suspect (ICD-10: C43.9)<br>2. Risk Stratification: CRITICAL URGENT (Total Dermatoscopy Score > 5.45)</div>
-          <div class="soap-section"><b>[P] PLAN:</b><br>1. Immediate referral for full-thickness excisional biopsy.<br>2. Patient counseled via HP Poly Studio audio in Hindi.<br>3. Record encrypted in HP Wolf Security local vault.</div>
+          <div class="soap-section"><b>[O] OBJECTIVE:</b><br>• Vision Screening (YOLOv8 INT8): Identified 'Melanoma' (96.4% confidence). TDS Score: 5.82.<br>• Pulmonary Stethoscopy (YAMNet INT8): Bilateral normal vesicular sounds.</div>
+          <div class="soap-section"><b>[A] ASSESSMENT:</b><br>1. Primary Diagnosis: Malignant melanoma suspect (ICD-10: C43.9)<br>2. Risk Stratification: High Risk (Total Dermatoscopy Score > 5.45)</div>
+          <div class="soap-section"><b>[P] PLAN:</b><br>1. Immediate referral for full-thickness excisional biopsy.<br>2. Patient counseled via audio in Hindi.<br>3. Record encrypted in HP Wolf Security local vault.</div>
         </div>
 
-        <!-- Multilingual Audio Counseling Player -->
-        <div style="background: rgba(0,0,0,0.3); padding:0.65rem; border-radius:6px; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+        <!-- Audio Counseling Player -->
+        <div style="background: rgba(0,0,0,0.3); padding:0.65rem; border-radius:6px; margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center;">
           <span style="font-size:0.8rem; color:var(--text-muted)">
-            🔊 Offline Audio Counseling (HP Poly Studio):
+            🔊 Audio Counseling:
           </span>
           <div style="display:flex; gap:0.5rem;">
-            <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="playPatientCounselingAudio('en')">Listen English</button>
-            <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="playPatientCounselingAudio('hi')">सुनें हिंदी</button>
-            <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="playPatientCounselingAudio('ta')">கேட்க தமிழ்</button>
+            <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="playPatientCounselingAudio('en')">English</button>
+            <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="playPatientCounselingAudio('hi')">हिंदी</button>
+            <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="playPatientCounselingAudio('ta')">தமிழ்</button>
           </div>
+        </div>
+
+        <!-- Live Subtitle & Transcript Display -->
+        <div id="counseling-subtitle-banner" style="display:none; margin-bottom:1rem; padding:0.6rem 0.8rem; background:rgba(0,240,255,0.08); border:1px solid rgba(0,240,255,0.3); border-radius:6px; font-size:0.82rem; line-height:1.4;">
+          <div style="color:var(--accent-cyan); font-weight:700; display:flex; justify-content:space-between; align-items:center;">
+            <span id="counseling-lang-tag">🔊 Playing Counseling Audio:</span>
+            <span style="font-size:0.7rem; color:var(--text-muted);">HP Poly Studio Audio</span>
+          </div>
+          <div id="counseling-subtitle-text" style="color:#FFF; margin-top:0.3rem; font-style:italic;"></div>
         </div>
 
         <!-- Action Buttons -->
         <div class="btn-row">
           <button class="btn btn-green" onclick="viewAbdmFhirModal()">
-            📥 1-Click ABDM / ABHA FHIR R4 Bundle
+            📥 Export ABDM FHIR R4
           </button>
           <button class="btn btn-danger" onclick="saveToWolfVault()">
-            🔒 Save to HP Wolf Encrypted Vault
+            🔒 Save to Wolf Vault
           </button>
         </div>
       </div>
 
     </div>
 
-    <!-- BOTTOM SPAN: HP AI COMPANION NATURAL LANGUAGE ASSISTANT -->
+    <!-- BOTTOM SPAN: HP AI COMPANION -->
     <div class="glass-card companion-panel">
       <div class="card-header">
         <div class="card-title">
-          <span>🤖</span> HP AI Companion — On-Device Clinical Assistant
+          <span>🤖</span> HP AI Companion
         </div>
-        <div class="badge-tag badge-hp">HP Wolf Protected</div>
+        <div class="badge-tag badge-hp">Wolf Protected</div>
       </div>
 
       <div class="companion-chat">
         <input type="text" id="companion-input" class="companion-input" 
-               placeholder="Ask HP AI Companion (e.g. 'Summarize all critical alerts today' or 'Check NPU hardware telemetry')..." 
-               value="HP AI: Summarize all high-risk clinical alerts from today's camp">
-        <button class="btn" onclick="askHpCompanion()">Ask HP AI</button>
+               placeholder="Ask clinical assistant (e.g., summarize alerts, check telemetry)..." 
+               value="Summarize high-risk clinical alerts from today's camp">
+        <button class="btn" onclick="askHpCompanion()">Ask Assistant</button>
+      </div>
+
+      <!-- Quick Prompt Suggestion Chips -->
+      <div style="display:flex; gap:0.5rem; margin-top:0.65rem; flex-wrap:wrap;">
+        <button class="btn btn-secondary" style="padding:0.22rem 0.6rem; font-size:0.75rem; border-radius:14px;" 
+                onclick="askHpCompanion('Summarize high-risk clinical alerts from today\'s camp')">🚨 High-Risk Alerts</button>
+        <button class="btn btn-secondary" style="padding:0.22rem 0.6rem; font-size:0.75rem; border-radius:14px;" 
+                onclick="askHpCompanion('Show Snapdragon Hexagon NPU hardware telemetry and battery status')">⚡ NPU Telemetry</button>
+        <button class="btn btn-secondary" style="padding:0.22rem 0.6rem; font-size:0.75rem; border-radius:14px;" 
+                onclick="askHpCompanion('Verify DPDP Act 2023 compliance and HP Wolf Security vault status')">🛡️ DPDP & Wolf Vault</button>
+        <button class="btn btn-secondary" style="padding:0.22rem 0.6rem; font-size:0.75rem; border-radius:14px;" 
+                onclick="askHpCompanion('Provide an overall summary of mobile clinic triage')">📊 Clinic Summary</button>
       </div>
 
       <div class="companion-output" id="companion-output" style="display:none;">
@@ -808,19 +954,19 @@ body {
     <div class="modal-content">
       <div class="modal-header">
         <h3 style="color:var(--accent-cyan); display:flex; align-items:center; gap:0.5rem;">
-          <span>🇮🇳</span> Official India ABDM / ABHA FHIR R4 DocumentBundle
+          <span>🇮🇳</span> ABDM FHIR R4 Clinical Bundle
         </h3>
         <button onclick="closeFhirModal()" style="background:transparent; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;">&times;</button>
       </div>
       <div class="modal-body">
         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
-          Conforms to NRCeS (National Resource Centre for EHR Standards) India FHIR R4 DiagnosticReportRecord specifications.
+          Conforms to NRCeS India FHIR R4 DiagnosticReport standards.
         </p>
         <pre id="fhir-modal-body" class="json-pre"></pre>
       </div>
       <div style="padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end; gap:0.75rem;">
-        <button class="btn btn-secondary" onclick="copyFhirJson()">Copy JSON</button>
-        <button class="btn btn-green" onclick="downloadFhirJsonFile()">Download .json</button>
+        <button class="btn btn-secondary" onclick="copyFhirJson()">Copy</button>
+        <button class="btn btn-green" onclick="downloadFhirJsonFile()">Download JSON</button>
         <button class="btn btn-secondary" onclick="closeFhirModal()">Close</button>
       </div>
     </div>
@@ -831,24 +977,22 @@ body {
     <div class="modal-content">
       <div class="modal-header">
         <h3 style="color:#10B981; display:flex; align-items:center; gap:0.5rem;">
-          <span>🛡️</span> HP Wolf Security Local Vault Inspector (AES-256 GCM)
+          <span>🛡️</span> HP Wolf Security Local Vault (AES-256 GCM)
         </h3>
         <button onclick="closeVaultModal()" style="background:transparent; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;">&times;</button>
       </div>
       <div class="modal-body">
         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
-          Hardware Root-of-Trust Encrypted Storage. Zero cloud transmissions. Tamper-evident SHA-256 hash chains.
+          Hardware Root-of-Trust encrypted storage with tamper-evident SHA-256 audit log.
         </p>
         <pre id="vault-modal-body" class="json-pre"></pre>
       </div>
       <div style="padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end;">
-        <button class="btn btn-secondary" onclick="closeVaultModal()">Close Inspector</button>
+        <button class="btn btn-secondary" onclick="closeVaultModal()">Close</button>
       </div>
     </div>
   </div>
 
-  <script src="/js/audio_synth.js"></script>
-  <script src="/js/cockpit.js"></script>
   <script src="js/audio_synth.js"></script>
   <script src="js/cockpit.js"></script>
 </body>

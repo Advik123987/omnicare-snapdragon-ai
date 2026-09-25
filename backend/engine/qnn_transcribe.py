@@ -24,6 +24,7 @@ class QnnSpeechDictationEngine:
             "en_lesion": "45-year-old male presents with asymmetrical hyperpigmented lesion on the right forearm, irregular borders noted, expanding over past 3 months.",
             "en_pulmonary": "Patient exhibits productive cough for 5 days with low-grade pyrexia. Auscultation reveals bilateral basal inspiratory crackles and mild tachypnea.",
             "hi_fever": "मरीज़ को पिछले चार दिनों से तेज बुखार और सांस लेने में कठिनाई हो रही है। सीने में भारीपन और सूखी खांसी की शिकायत है।",
+            "ta_chest": "நோயாளிக்கு கடந்த 3 நாட்களாக இருமல் மற்றும் மூச்சுத் திணறல் உள்ளது. மார்பில் இழுப்பு மற்றும் சளி தொல்லை இருப்பதாக தெரிவிக்கிறார்.",
             "en_retina": "58-year-old female with 12-year history of Type 2 Diabetes. Fundus screening shows microaneurysms and hard exudates in the macula."
         }
 
@@ -35,13 +36,15 @@ class QnnSpeechDictationEngine:
         """
         actual_latency_ms = max(18.2 + random.uniform(-1.2, 1.5), 14.5)
 
-        # Select text
-        if preset_key and preset_key in self.sample_dictations:
-            transcript_text = self.sample_dictations[preset_key]
-        elif language == "hi":
+        # Select text - explicitly prioritize language requested
+        if language == "ta" or preset_key == "ta_chest":
+            transcript_text = self.sample_dictations["ta_chest"]
+        elif language == "hi" or preset_key == "hi_fever":
             transcript_text = self.sample_dictations["hi_fever"]
+        elif preset_key and preset_key in self.sample_dictations:
+            transcript_text = self.sample_dictations[preset_key]
         else:
-            transcript_text = self.sample_dictations.get(preset_key, self.sample_dictations["en_lesion"])
+            transcript_text = self.sample_dictations["en_lesion"]
 
         word_count = len(transcript_text.split())
         telemetry = telemetry_profiler.record_inference(actual_latency_ms, "Qualcomm AI Hub Whisper-Small (INT8/FP16)")
