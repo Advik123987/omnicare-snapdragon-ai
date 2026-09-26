@@ -630,6 +630,15 @@ body {
         <span>Battery:</span>
         <span class="val" style="color:#38BDF8;">26h Off-Grid</span>
       </div>
+      <div class="telemetry-item" style="border-left:1px solid rgba(255,255,255,0.1); padding-left:0.5rem;">
+        <span style="color:var(--accent-gold);">⚡ Smart Sense:</span>
+        <select id="governor-mode-select" onchange="switchGovernorMode(this.value)"
+                style="background:rgba(0,0,0,0.6); color:#FFF; border:1px solid rgba(229,169,60,0.4); border-radius:4px; font-size:0.72rem; padding:0.15rem 0.35rem; cursor:pointer;">
+          <option value="performance">🚀 Performance (45 TOPS)</option>
+          <option value="balanced" selected>⚖️ Balanced (38.5 TOPS)</option>
+          <option value="eco">🌿 Off-Grid Eco (28 TOPS)</option>
+        </select>
+      </div>
       <div style="display:flex; gap:0.5rem; margin-left:0.5rem;">
         <a href="../showcase/index.html" class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.75rem; text-decoration:none;">🧪 Showcase</a>
         <a href="../showcase/pitch-deck.html" class="btn" style="padding:0.25rem 0.6rem; font-size:0.75rem; text-decoration:none;">📊 Pitch Deck</a>
@@ -655,11 +664,23 @@ body {
         <div>LOCATION: <b id="pat-location">Primary Health Camp #4 (Off-Grid)</b></div>
       </div>
     </div>
-    <div style="display:flex; gap:1rem; align-items:center;">
-      <button class="btn btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.75rem;" onclick="viewAbdmFhirModal()">
-        ABDM FHIR Bundle
+    <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+      <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.75rem; border-color:rgba(16,185,129,0.5);" onclick="openNews2Modal()">
+        🚨 NEWS2: <b id="pat-news2-badge" style="color:var(--accent-green);">2 (Low)</b>
       </button>
-      <span style="color:var(--accent-green); font-size:0.8rem;">● 100% On-Device Privacy</span>
+      <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.75rem; border-color:rgba(229,169,60,0.5);" onclick="openCouncilModal()">
+        🧑‍⚕️ Council of AI
+      </button>
+      <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.75rem; border-color:rgba(56,189,248,0.5);" onclick="openDrugGuardianModal()">
+        💊 PMBJP Drugs
+      </button>
+      <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.75rem; border-color:rgba(244,63,94,0.5);" onclick="openPocusModal()">
+        🩺 POCUS
+      </button>
+      <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.75rem;" onclick="viewAbdmFhirModal()">
+        ABDM FHIR
+      </button>
+      <span style="color:var(--accent-green); font-size:0.78rem;">● Edge Vault</span>
     </div>
   </section>
 
@@ -817,6 +838,153 @@ body {
           <button class="btn btn-secondary" onclick="runAudioScreening('Normal Vesicular Breath Sound')">
             🔊 Normal Breath
           </button>
+        </div>
+      </div>
+
+      <!-- MODALITY 5: CONTACTLESS CAMERA rPPG VITALS -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🫀</span> Contactless Camera rPPG Vitals
+            <span class="badge-tag badge-npu" style="margin-left:0.4rem; font-size:0.68rem;">POS-Net INT8</span>
+          </div>
+          <div class="card-latency" id="rppg-latency">8.2 ms | Hexagon NPU</div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem; background:rgba(0,0,0,0.35); padding:0.35rem 0.75rem; border-radius:6px; font-size:0.78rem;">
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <span style="color:var(--text-muted);">Optical Source:</span>
+            <span style="color:var(--accent-cyan); font-weight:600;">HP True Vision 5MP (Face ROI)</span>
+          </div>
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green);" id="rppg-snr">
+            SQI: 98.4% • 16.5 dB SNR
+          </div>
+        </div>
+
+        <!-- Waveform Canvas -->
+        <div style="position:relative; width:100%; height:85px; background:#040711; border-radius:6px; overflow:hidden; margin-bottom:0.75rem; border:1px solid rgba(0,240,255,0.2);">
+          <canvas id="rppg-canvas" width="440" height="85" style="width:100%; height:100%; display:block;"></canvas>
+          <div style="position:absolute; top:6px; right:8px; font-family:var(--font-mono); font-size:0.68rem; color:var(--accent-cyan);">
+            PHOTOPLETHYSMOGRAM (PPG)
+          </div>
+        </div>
+
+        <!-- 4 Vitals Box Grid -->
+        <div class="abcd-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom:0.75rem;">
+          <div class="abcd-box">
+            <div class="label">Heart Rate</div>
+            <div class="value" id="val-rppg-hr" style="color:#EF4444;">74 BPM</div>
+            <div class="sub" id="sub-rppg-hr">Resting Normal</div>
+          </div>
+          <div class="abcd-box">
+            <div class="label">Blood O2</div>
+            <div class="value" id="val-rppg-spo2" style="color:var(--accent-cyan);">98.5%</div>
+            <div class="sub" id="sub-rppg-spo2">Optimal SpO2</div>
+          </div>
+          <div class="abcd-box">
+            <div class="label">Respiration</div>
+            <div class="value" id="val-rppg-rr" style="color:var(--accent-green);">16 RPM</div>
+            <div class="sub" id="sub-rppg-rr">Normal Eupnea</div>
+          </div>
+          <div class="abcd-box">
+            <div class="label">HRV (SDNN)</div>
+            <div class="value" id="val-rppg-hrv" style="color:var(--accent-gold);">58 ms</div>
+            <div class="sub" id="sub-rppg-hrv">Low Stress</div>
+          </div>
+        </div>
+
+        <!-- Triage Flag -->
+        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.3); padding:0.4rem 0.75rem; border-radius:6px; margin-bottom:0.75rem; font-size:0.78rem;">
+          <div>
+            <span style="color:var(--text-muted)">Triage Status:</span>
+            <b id="rppg-triage-flag" style="color:var(--accent-green); margin-left:0.3rem;">Normal Hemodynamics</b>
+          </div>
+          <div style="font-family:var(--font-mono); color:var(--text-muted); font-size:0.74rem;">
+            Shock Index: <b id="rppg-shock-idx" style="color:var(--accent-cyan);">0.64</b>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn" onclick="runRppgScreening('normal')">
+            📹 Normal Vitals
+          </button>
+          <button class="btn btn-secondary" onclick="runRppgScreening('tachycardia')">
+            📹 Tachycardia / Fever
+          </button>
+          <button class="btn btn-secondary" onclick="runRppgScreening('respiratory_distress')">
+            📹 Hypoxemia Alert
+          </button>
+        </div>
+      </div>
+
+      <!-- MODALITY 6: 12-LEAD PAPER ECG DIGITIZER & ARRHYTHMIA CLASSIFIER -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📈</span> Paper ECG Digitizer & Arrhythmia AI
+            <span class="badge-tag badge-npu" style="margin-left:0.4rem; font-size:0.68rem;">PTB-XL INT8</span>
+          </div>
+          <div class="card-latency" id="ecg-latency">6.8 ms | Hexagon NPU</div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem; background:rgba(0,0,0,0.35); padding:0.35rem 0.75rem; border-radius:6px; font-size:0.78rem;">
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <span style="color:var(--text-muted);">Lead Analyzed:</span>
+            <span id="ecg-lead-label" style="color:var(--accent-cyan); font-weight:600;">Lead II (Rhythm Strip 25mm/s)</span>
+          </div>
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green);" id="ecg-grid-metric">
+            Grid Filter: 98.4% • Deskew: 1.2°
+          </div>
+        </div>
+
+        <!-- ECG Waveform Canvas with Medical Pink/Red Millimeter Grid -->
+        <div style="position:relative; width:100%; height:95px; background:#070C18; border-radius:6px; overflow:hidden; margin-bottom:0.75rem; border:1px solid rgba(244,63,94,0.35);">
+          <canvas id="ecg-canvas" width="440" height="95" style="width:100%; height:100%; display:block;"></canvas>
+          <div style="position:absolute; top:6px; right:8px; font-family:var(--font-mono); font-size:0.68rem; color:#F43F5E;">
+            10mm/mV • 250Hz DIGITIZED
+          </div>
+        </div>
+
+        <!-- Dynamic Intervals Box -->
+        <div class="abcd-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom:0.75rem;">
+          <div class="abcd-box">
+            <div class="label">PR Interval</div>
+            <div class="value" id="val-ecg-pr" style="color:var(--accent-cyan);">158 ms</div>
+            <div class="sub" id="sub-ecg-pr">Normal AV Node</div>
+          </div>
+          <div class="abcd-box">
+            <div class="label">QRS Duration</div>
+            <div class="value" id="val-ecg-qrs" style="color:var(--accent-cyan);">86 ms</div>
+            <div class="sub" id="sub-ecg-qrs">Narrow Bundle</div>
+          </div>
+          <div class="abcd-box">
+            <div class="label">QTc (Bazett)</div>
+            <div class="value" id="val-ecg-qtc" style="color:var(--accent-gold);">412 ms</div>
+            <div class="sub" id="sub-ecg-qtc">Normal Repol</div>
+          </div>
+          <div class="abcd-box">
+            <div class="label">ST Elevation</div>
+            <div class="value" id="val-ecg-st" style="color:var(--accent-green);">0.0 mm</div>
+            <div class="sub" id="sub-ecg-st">Isoelectric</div>
+          </div>
+        </div>
+
+        <!-- Primary Diagnosis Banner -->
+        <div class="diagnosis-banner normal" id="ecg-banner" style="margin-bottom:0.75rem;">
+          <div>
+            <div class="diag-title" id="ecg-condition" style="color:#FFF;">Normal Sinus Rhythm (NSR) (97.4%)</div>
+            <div class="diag-icd" id="ecg-icd">ICD-10: R00.0 • Regular P-wave morphology and rate</div>
+          </div>
+          <div style="text-align: right;">
+            <span class="badge-tag badge-hp" id="ecg-badge" style="font-size:0.8rem;">BENIGN</span>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="runEcgScreening('Normal Sinus Rhythm (NSR)')">Normal Sinus</button>
+          <button class="btn btn-danger" onclick="runEcgScreening('Acute ST-Elevation Myocardial Infarction (STEMI)')">⚡ Code STEMI</button>
+          <button class="btn btn-royal" onclick="runEcgScreening('Atrial Fibrillation (AFib)')">⚡ AFib</button>
+          <button class="btn btn-secondary" onclick="runEcgScreening('Premature Ventricular Contractions (PVC)')">PVC Ectopy</button>
         </div>
       </div>
 
@@ -989,6 +1157,82 @@ body {
       </div>
       <div style="padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end;">
         <button class="btn btn-secondary" onclick="closeVaultModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWS2 DETERIORATION MODAL -->
+  <div id="news2-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width:850px;">
+      <div class="modal-header">
+        <h3 style="color:#EF4444; display:flex; align-items:center; gap:0.5rem;">
+          <span>🚨</span> NEWS2 Clinical Deterioration & Shock Index Predictor
+        </h3>
+        <button onclick="closeNews2Modal()" style="background:transparent; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body" id="news2-modal-body">
+        <!-- Rendered dynamically by cockpit.js -->
+      </div>
+      <div style="padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.75rem; color:var(--text-muted);">Royal College of Physicians (RCP) Standard • Qualcomm Hexagon NPU</span>
+        <button class="btn btn-secondary" onclick="closeNews2Modal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COUNCIL OF AI SPECIALISTS MODAL -->
+  <div id="council-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width:920px;">
+      <div class="modal-header">
+        <h3 style="color:var(--accent-gold); display:flex; align-items:center; gap:0.5rem;">
+          <span>🧑‍⚕️</span> Autonomous Council of AI Specialists (Consensus Panel)
+        </h3>
+        <button onclick="closeCouncilModal()" style="background:transparent; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body" id="council-modal-body">
+        <!-- Rendered dynamically by cockpit.js -->
+      </div>
+      <div style="padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.75rem; color:var(--text-muted);">Edge Multi-Agent Orchestration • Llama-3.2 INT4 Quantized</span>
+        <button class="btn btn-secondary" onclick="closeCouncilModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PMBJP DRUG GUARDIAN MODAL -->
+  <div id="drugs-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width:880px;">
+      <div class="modal-header">
+        <h3 style="color:var(--accent-cyan); display:flex; align-items:center; gap:0.5rem;">
+          <span>💊</span> Pradhan Mantri Jan Aushadhi (PMBJP) Drug Guardian
+        </h3>
+        <button onclick="closeDrugGuardianModal()" style="background:transparent; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body" id="drugs-modal-body">
+        <!-- Rendered dynamically by cockpit.js -->
+      </div>
+      <div style="padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.75rem; color:var(--text-muted);">NLEM 2022 Formulary • CYP450 Drug-Drug Interaction Check</span>
+        <button class="btn btn-secondary" onclick="closeDrugGuardianModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POCUS HANDHELD ULTRASOUND MODAL -->
+  <div id="pocus-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width:850px;">
+      <div class="modal-header">
+        <h3 style="color:#F43F5E; display:flex; align-items:center; gap:0.5rem;">
+          <span>🩺</span> Point-of-Care Ultrasound (POCUS) AI Diagnostic Scanner
+        </h3>
+        <button onclick="closePocusModal()" style="background:transparent; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body" id="pocus-modal-body">
+        <!-- Rendered dynamically by cockpit.js -->
+      </div>
+      <div style="padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.75rem; color:var(--text-muted);">USB-C Phased Array Probe • Hexagon NPU 2D-CNN Real-Time</span>
+        <button class="btn btn-secondary" onclick="closePocusModal()">Close</button>
       </div>
     </div>
   </div>

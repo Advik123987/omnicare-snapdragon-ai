@@ -28,6 +28,16 @@ from engine.hp_ai_companion import hp_ai_companion
 from engine.telemetry import telemetry_profiler
 from engine.safety_guardrails import safety_guardrails
 from engine.dicom_parser import dicom_parser
+from engine.qnn_rppg import qnn_rppg_engine
+from engine.cardiac_ecg import cardiac_ecg_engine
+from engine.news2_calculator import news2_engine
+from engine.drug_guardian import drug_guardian_engine
+from engine.council_of_specialists import council_of_specialists
+from engine.pocus_ultrasound import pocus_engine
+from engine.regional_counselor import regional_counselor
+from engine.dicom_pacs_server import pacs_server
+from engine.federated_privacy import federated_privacy_engine
+from engine.hardware_governor import hardware_governor
 from security.wolf_vault import wolf_vault
 from security.offline_sync_engine import offline_sync_engine
 
@@ -68,6 +78,54 @@ class VaultStoreRequest(BaseModel):
 
 class HPCompanionQueryRequest(BaseModel):
     query: str
+
+class NEWS2Request(BaseModel):
+    respiration_rate: float = 16.0
+    spo2_percent: float = 98.0
+    systolic_bp: float = 120.0
+    heart_rate: float = 72.0
+    temperature_celsius: float = 37.0
+    consciousness_avpu: str = "Alert"
+    supplemental_o2: bool = False
+    hypercapnic_scale2: bool = False
+    diastolic_bp: float = 80.0
+    suspected_infection: bool = False
+
+class DrugAnalysisRequest(BaseModel):
+    prescribed_drugs: list = ["Augmentin 625mg", "Pan-D", "Telma-AM"]
+    patient_conditions: Optional[list] = []
+    patient_egfr: Optional[float] = 90.0
+    patient_qtc_ms: Optional[float] = 412.0
+
+class CouncilDeliberateRequest(BaseModel):
+    patient_info: PatientInfoModel
+    vitals: Optional[Dict[str, Any]] = None
+    vision_findings: Optional[Dict[str, Any]] = None
+    audio_findings: Optional[Dict[str, Any]] = None
+    ecg_findings: Optional[Dict[str, Any]] = None
+    prescriptions: Optional[list] = None
+
+class RegionalCounselingRequest(BaseModel):
+    language_code: str = "ta"
+    patient_name: str = "Aarav Mehra"
+    condition_name: str = "Cutaneous Melanoma"
+    triage_urgency: str = "HIGH_RISK"
+
+class DicomExportRequest(BaseModel):
+    patient_id: str = "P-10024"
+    patient_name: str = "Aarav Mehra"
+    modality: str = "CR"
+    findings: Dict[str, Any] = {"impression": "Clear lung fields, no pneumothorax"}
+
+class FederatedTrainRequest(BaseModel):
+    model_config = {"protected_namespaces": ()}
+    model_name: str = "YOLOv8-Lesion-INT8"
+    local_sample_count: int = 14
+    epsilon_budget: float = 1.2
+    delta_target: float = 1e-5
+
+class GovernorModeRequest(BaseModel):
+    mode_key: str = "balanced"
 
 # ----------------- API Endpoints -----------------
 
@@ -116,6 +174,31 @@ async def analyze_pulmonary_sound(sound_type_hint: Optional[str] = Form(None),
     """
     audio_bytes = await file.read() if file else None
     result = qnn_audio_engine.analyze_respiratory_sound(audio_data=audio_bytes, sound_type_hint=sound_type_hint)
+    return JSONResponse(content=result)
+
+@app.post("/api/diagnostic/vitals/rppg")
+def extract_contactless_vitals(preset: Optional[str] = Form("normal"),
+                               lux: Optional[float] = Form(450.0)):
+    """
+    Contactless camera photoplethysmography (rPPG) vitals extraction
+    on Qualcomm Hexagon NPU using HP True Vision 5MP / HP Poly Camera Pro stream.
+    """
+    result = qnn_rppg_engine.analyze_contactless_vitals(patient_preset=preset, lighting_lux=lux or 450.0)
+    return JSONResponse(content=result)
+
+@app.post("/api/diagnostic/cardiac/ecg-digitize")
+async def digitize_paper_ecg(condition_hint: Optional[str] = Form(None),
+                             lead_hint: Optional[str] = Form("Lead II (Rhythm Strip)"),
+                             file: Optional[UploadFile] = File(None)):
+    """
+    12-Lead Paper ECG optical digitization and PTB-XL arrhythmia classification on Hexagon NPU.
+    """
+    image_bytes = await file.read() if file else None
+    result = cardiac_ecg_engine.digitize_and_analyze_ecg(
+        ecg_image_bytes=image_bytes,
+        lead_hint=lead_hint or "Lead II (Rhythm Strip)",
+        condition_hint=condition_hint
+    )
     return JSONResponse(content=result)
 
 @app.post("/api/diagnostic/speech/transcribe")
@@ -257,6 +340,133 @@ async def parse_dicom_file(file: Optional[UploadFile] = File(None)):
     data_bytes = await file.read() if file else b""
     res = dicom_parser.parse_dicom_bytes(data_bytes)
     return JSONResponse(content=res)
+
+# ----------------- Advancements 3 to 10 Clinical & Edge Endpoints -----------------
+
+@app.post("/api/clinical/news2-risk")
+def calculate_news2_risk(payload: NEWS2Request):
+    """
+    NEWS2 (National Early Warning Score) & Clinical Deterioration Predictor.
+    """
+    res = news2_engine.calculate_news2(
+        respiration_rate=payload.respiration_rate,
+        spo2_percent=payload.spo2_percent,
+        systolic_bp=payload.systolic_bp,
+        heart_rate=payload.heart_rate,
+        temperature_celsius=payload.temperature_celsius,
+        consciousness_avpu=payload.consciousness_avpu,
+        supplemental_o2=payload.supplemental_o2,
+        hypercapnic_scale2=payload.hypercapnic_scale2,
+        diastolic_bp=payload.diastolic_bp,
+        suspected_infection=payload.suspected_infection
+    )
+    return JSONResponse(content=res)
+
+@app.post("/api/clinical/drug-guardian")
+def analyze_prescription_drugs(payload: DrugAnalysisRequest):
+    """
+    Offline Clinical Vector RAG & PMBJP Jan Aushadhi generic substitution engine.
+    """
+    res = drug_guardian_engine.analyze_prescription(
+        prescribed_drugs=payload.prescribed_drugs,
+        patient_conditions=payload.patient_conditions,
+        patient_egfr=payload.patient_egfr,
+        patient_qtc_ms=payload.patient_qtc_ms
+    )
+    return JSONResponse(content=res)
+
+@app.post("/api/clinical/council-deliberate")
+def deliberate_multidisciplinary_case(payload: CouncilDeliberateRequest):
+    """
+    Autonomous Multi-Agent Clinical Consensus Panel ("Council of AI Specialists").
+    """
+    res = council_of_specialists.deliberate_case(
+        patient_info=payload.patient_info.dict(),
+        vitals=payload.vitals,
+        vision_findings=payload.vision_findings,
+        audio_findings=payload.audio_findings,
+        ecg_findings=payload.ecg_findings,
+        prescriptions=payload.prescriptions
+    )
+    return JSONResponse(content=res)
+
+@app.post("/api/diagnostic/pocus/cardiac")
+def analyze_cardiac_ultrasound(preset: str = Form("normal"), frame_rate: float = Form(32.0)):
+    """
+    POCUS Handheld Phased-Array Ultrasound Left Ventricular Ejection Fraction (LVEF).
+    """
+    res = pocus_engine.analyze_cardiac_echo(preset=preset, frame_rate_fps=frame_rate)
+    return JSONResponse(content=res)
+
+@app.post("/api/diagnostic/pocus/lung")
+def analyze_lung_ultrasound_view(preset: str = Form("normal_sliding")):
+    """
+    POCUS Lung Ultrasound Pleural Sliding & B-line comet-tail analyzer.
+    """
+    res = pocus_engine.analyze_lung_ultrasound(preset=preset)
+    return JSONResponse(content=res)
+
+@app.post("/api/counseling/regional-vernacular")
+def generate_regional_counseling(payload: RegionalCounselingRequest):
+    """
+    Multilingual speech synthesizer & patient counseling in 8 Indian regional languages.
+    """
+    res = regional_counselor.generate_patient_counseling(
+        language_code=payload.language_code,
+        patient_name=payload.patient_name,
+        condition_name=payload.condition_name,
+        triage_urgency=payload.triage_urgency
+    )
+    return JSONResponse(content=res)
+
+@app.get("/api/pacs/studies")
+def query_pacs_studies(patient_id: Optional[str] = None):
+    """
+    DICOM 3.0 Web-PACS QIDO-RS Study Query.
+    """
+    return JSONResponse(content=pacs_server.query_studies(patient_id=patient_id))
+
+@app.post("/api/pacs/export-instance")
+def export_pacs_instance(payload: DicomExportRequest):
+    """
+    DICOM Part 10 Secondary Capture creation with HP Wolf Enclave signing.
+    """
+    res = pacs_server.export_dicom_web_package(
+        patient_id=payload.patient_id,
+        patient_name=payload.patient_name,
+        modality=payload.modality,
+        findings=payload.findings
+    )
+    return JSONResponse(content=res)
+
+@app.post("/api/federated/dp-gradient-step")
+def compute_dp_gradient_step(payload: FederatedTrainRequest):
+    """
+    Differential Privacy (DP-SGD) & Federated Edge Learning gradient step.
+    """
+    res = federated_privacy_engine.compute_federated_update(
+        model_name=payload.model_name,
+        local_sample_count=payload.local_sample_count,
+        epsilon_budget=payload.epsilon_budget,
+        delta_target=payload.delta_target
+    )
+    return JSONResponse(content=res)
+
+@app.get("/api/hardware/governor")
+def get_hardware_governor_status():
+    """
+    Get live HP Smart Sense hardware & thermal governor profile.
+    """
+    return JSONResponse(content=hardware_governor.get_current_governor_status())
+
+@app.post("/api/hardware/governor/set-mode")
+def set_hardware_governor_mode(payload: GovernorModeRequest):
+    """
+    Set active hardware governor profile (performance, balanced, eco).
+    """
+    res = hardware_governor.set_governor_mode(mode_key=payload.mode_key)
+    return JSONResponse(content=res)
+
 
 # Mount Frontend & Showcase static assets
 frontend_dir = Path(__file__).resolve().parent.parent / "frontend"
